@@ -601,6 +601,10 @@ a.btn-menu-control {
   .logo-image {
     width: 65px;
   }
+
+  .font-size-32 {
+    font-size: 24px;
+  }
 }
 
 @media (min-width: 992px) {

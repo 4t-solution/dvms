@@ -622,13 +622,47 @@ a.btn-menu-control {
   }
 }
 
-@media (max-width: 375px) {
-  .header-title.is-top {
-    width: calc(100% - 100px) !important;
+@media (max-width: 576px) {
+  .stack-on-small {
+    display: block;
+  }
+
+  .logo {
+    width: 63px;
+  }
+
+  .page-title-header-2 {
+    position: absolute;
+    top: 0px !important;;
+    font-weight: 800;
+    left: 60px;
+  }
+
+  .page-title-header-2 p {    
+    font-size: 15px !important;
+  }
+
+  .header-title {
+    width: calc(100% - 55px) !important;;
   }
 
   .menu-control--btn button {
-    width: 70px;
+    height: 45px;
+    width: 50px;
+    font-size: 12px;
+  }
+
+  .navbar .nav-container .menu-of-menu-hambuger a {
+    font-size: 15px;
+    padding: 5px;
+  }
+
+  .font-sie-title-002 {
+    font-size: 20px;
+  }
+
+  .header-title.is-top {
+    width: calc(100% - 100px) !important;
   }
 }
 

@@ -335,48 +335,6 @@ textarea:focus {
   height:50px;
 }
 
-@media (max-width: 576px) {
-  .stack-on-small {
-    display: block;
-  }
-
-  .logo {
-    width: 63px;
-  }
-
-  .page-title-header-2 {
-    position: absolute;
-    top: 0px !important;;
-    font-weight: 800;
-    left: 60px;
-  }
-
-  .page-title-header-2 p {    
-    font-size: 15px !important;
-  }
-
-  .header-title {
-    width: calc(100% - 55px);
-  }
-
-  .menu-control--btn button {
-    height: 45px;
-    width: 50px;
-    font-size: 12px;
-    font-size: 3.2vw;
-  }
-
-  .navbar .nav-container .menu-of-menu-hambuger a {
-    font-size: 15px;
-    padding: 5px;
-  }
-
-  .font-sie-title-002 {
-    font-size: 20px;
-  }
-}
-
-
 @media (max-width: 768px) {
   .stack-on-small {
     display: block;
@@ -455,4 +413,3 @@ textarea:focus {
     right: 11px;
   }
 }
-

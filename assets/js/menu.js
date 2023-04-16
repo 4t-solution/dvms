@@ -152,7 +152,7 @@ window.onscroll = function() {scrollFunction()};
 
 function scrollFunction() {
   if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-    $('.menu-control--btn').addClass('is-scroll');
+    $('.menu-control--btn').addClass('is-scroll');    
     $('#btn_go_to_top').show();
   } else {
     $('#btn_go_to_top').hide();
@@ -160,7 +160,8 @@ function scrollFunction() {
   }
 }
 
-function topFunction() {
-  document.body.scrollTop = 0;
-  document.documentElement.scrollTop = 0;
-}
+$('#btn_go_to_top').click(function () {
+    console.log('click top');
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
+})

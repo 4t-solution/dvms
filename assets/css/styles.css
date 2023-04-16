@@ -449,5 +449,10 @@ textarea:focus {
   .conversion-list {
     padding-left: 0px;
   }
+
+  .description-text {
+    bottom: 0px;
+    right: 11px;
+  }
 }
 

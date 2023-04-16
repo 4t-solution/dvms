@@ -544,7 +544,7 @@ a.btn-menu-control {
 @media (max-width: 750px) {
   .page-title-header {
     position: absolute;
-    top: 5px;
+    top: 0px !important;
     left: 65px !important;
     font-weight: 800;
   }
@@ -611,4 +611,25 @@ a.btn-menu-control {
     max-width: 360px;
   }
 }
+
+@media (max-width: 667px) {
+  .header-title.is-top {
+    width: calc(100% - 140px) !important;
+  }
+
+  .menu-control--btn button {
+    width: 70px;
+  }
+}
+
+@media (max-width: 375px) {
+  .header-title.is-top {
+    width: calc(100% - 100px) !important;
+  }
+
+  .menu-control--btn button {
+    width: 70px;
+  }
+}
+
 

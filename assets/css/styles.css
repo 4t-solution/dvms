@@ -283,12 +283,12 @@ textarea:focus {
   opacity: 1;
 }
 
-#btnSend[type="submit"]:disabled {
+#btnSend[type="submit"]:disabled,#btnSend[type="button"]:disabled  {
   background-color: #F2F2F2;
   color: #000000;
 }
 
-#btnSend[type="submit"] {
+#btnSend[type="submit"], #btnSend {
   background-color: #fcd5b5;
   color: #000000;
   border: none;

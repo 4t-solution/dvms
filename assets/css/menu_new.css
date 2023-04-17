@@ -403,9 +403,13 @@
   left: 100%;
   position: absolute;
   width: 100%;
-  top: 53px;
+  top: 67px;
   max-width: 300px;
   display: block;
+}
+
+.menu-button-component .menu-level-1.is-open .menu-level-2 {
+  top: 53px;
 }
 
 .is-open.menu-level-3 {

@@ -634,3 +634,61 @@ a.btn-menu-control {
   }
 }
 
+@media (min-width: 300px) {
+  .description-text {
+    bottom: 0px !important;
+    right: 10px !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .conversion-list {
+    padding-left: 0px !important;
+    margin: 0px !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .conversion-list li {
+    padding-left: 0px !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .row-mission {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 768px) {
+  .our-hospital-content {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 768px) {
+  .sp-margin-10 {
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+}
+
+@media (min-width: 768px) {
+  .width-mission {
+    max-width: 550px !important;
+    justify-content: space-between;
+  }
+}
+
+@media (min-width: 768px) {
+  .row-mission {
+    justify-content: space-between;
+  }
+}
+
+@media (min-width: 768px) {
+  .our-hospital-content {
+    justify-content: space-between;
+  }
+}
+

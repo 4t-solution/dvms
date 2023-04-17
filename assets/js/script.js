@@ -25,19 +25,18 @@ function submitForm() {
    data_form = parseJson(data_form);
    console.log(data_form);
    $.ajax({
-      url: 'http://localhost/rt/recruit/create',
-      type: 'POST',
-      data: data_form
-   })
-   // Ajaxリクエストが成功した時発動
-   .done((data) => {
-      $('.result').html(data);
-      console.log(data);
-   })
-   // Ajaxリクエストが失敗した時発動
-   .fail((data) => {
-      $('.result').html(data);
-      console.log(data);
+      url: 'http://room14.ml/ahm10_dev/rt/recruit/create',
+      method: 'POST',
+      data: data_form,
+      // Ajaxリクエストが成功した時発動
+      success: function(data) {
+         console.log(data);
+      },
+      // Ajaxリクエストが失敗した時発動
+      error: function(xhr, status, error) {
+         var err = eval("(" + xhr.responseText + ")");
+         console.log(err.messages.validated_fail);
+      },
    })
 }
 

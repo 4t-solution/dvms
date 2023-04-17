@@ -306,6 +306,7 @@
 .conversion-list li:hover > a, .menu-entry-item-sub-list li:hover > a, .menu-entry-item-sub-list li.is-open > a {
   background: #F79646;
   color: #ffffff;
+  cursor: pointer;
 }
 
 .menu-entry-item-sub-list li.is-open > a > span {

@@ -673,6 +673,12 @@ a.btn-menu-control {
   }
 }
 
+@media (max-width: 768px) {
+  .sp-margin-bottom-10 {
+    margin-bottom: 10px;
+  }
+}
+
 @media (min-width: 768px) {
   .width-mission {
     max-width: 550px !important;

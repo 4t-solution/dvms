@@ -160,7 +160,7 @@ function scrollFunction() {
   }
 }
 
-function topFunction() {
+$('#btn_go_to_top').click(function () {
   document.body.scrollTop = 0;
   document.documentElement.scrollTop = 0;
-}
+})

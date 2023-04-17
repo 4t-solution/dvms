@@ -37,7 +37,7 @@
 
 .menu-control--btn {
   position: fixed;
-  right: 10px;
+  right: 0px;
   top: 0;
   z-index: 1000;
   display: -webkit-box;
@@ -490,10 +490,6 @@ a.btn-menu-control {
     display: block;
   }
 
-  .menu-control--btn {
-    right: 10px;
-  }
-
   .min-height-260 {
     min-height: unset;
   }
@@ -663,6 +659,20 @@ a.btn-menu-control {
 
   .header-title.is-top {
     width: calc(100% - 100px) !important;
+  }
+}
+
+@media (max-width: 375px) {
+  .header-title.is-top {
+    width: calc(100% - 100px) !important;
+  }
+
+  .menu-control--btn button {
+    width: 50px;
+  }
+
+  .menu-control--btn {
+    right: 0px !important;
   }
 }
 

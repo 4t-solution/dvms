@@ -791,3 +791,11 @@ a.btn-menu-control {
   border: none;
 }
 
+@media (min-width: 1200px) {
+  .menu-button-component .menu-entry-sub-list-item-list.menu-level-2,
+  .menu-button-component .menu-entry-sub-list-item-list.menu-level-2 li, 
+  .menu-button-component .menu-entry-sub-list-item-list.left-menu-item.menu-level-2 li a {
+    width: 150px;
+    padding-left: 0px;
+  }
+}

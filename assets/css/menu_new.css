@@ -728,6 +728,13 @@ a.btn-menu-control {
   }
 }
 
+
+@media (max-width: 768px) {
+  .menu-of-menu-hambuger {
+    top: 50px !important;
+  }
+}
+
 @media (max-width: 768px) {
   .our-hospital-content {
     justify-content: center;

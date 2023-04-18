@@ -780,3 +780,14 @@ a.btn-menu-control {
   }
 }
 
+#btnSend[type="button"]:disabled {
+  background-color: #F2F2F2;
+  color: #000000;
+}
+
+#btnSend[type="button"] {
+  background-color: #fcd5b5;
+  color: #000000;
+  border: none;
+}
+

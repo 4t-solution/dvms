@@ -14,7 +14,7 @@
   .title-underline {
     box-shadow: 0px 2px 0px rgb(250, 186, 134);
     border-bottom: 4px solid #f79646;
-    margin-bottom: 8px;
+    margin-bottom: 20px;
   }
 }
 
@@ -74,7 +74,7 @@
   .title-underline {
     box-shadow: 0px 2px 0px rgb(250, 186, 134);
     border-bottom: 4px solid #f79646;
-    margin-bottom: 8px;
+    margin-bottom: 20px;
   }
 }
 
@@ -134,7 +134,7 @@
   .title-underline {
     box-shadow: 0px 4px 0px rgb(250, 186, 134);
     border-bottom: 6px solid #f79646;
-    margin-bottom: 8px;
+    margin-bottom: 20px;
   }
 }
 
@@ -194,7 +194,7 @@
   .title-underline {
     box-shadow: 0px 4px 0px rgb(250, 186, 134);
     border-bottom: 6px solid #f79646;
-    margin-bottom: 8px;
+    margin-bottom: 20px;
   }
 }
 
@@ -254,7 +254,7 @@
   .title-underline {
     box-shadow: 0px 4px 0px rgb(250, 186, 134);
     border-bottom: 6px solid #f79646;
-    margin-bottom: 8px;
+    margin-bottom: 20px;
   }
 }
 
@@ -301,4 +301,8 @@
 }
 
 /* =============================================================== */
+
+.fs-0005 {
+  font-size: 30px !important;
+}
 

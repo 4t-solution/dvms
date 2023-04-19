@@ -12,7 +12,6 @@ $(document).ready(function () {
  function submitForm() {
     let data_form = $('#inputForm').serializeArray();
     data_form = parseJson(data_form);
-    console.log(data_form);
     $.ajax({
        url: 'http://room14.ml/ahm10_dev/rt/recruit/create',
        method: 'POST',

@@ -728,6 +728,13 @@ a.btn-menu-control {
   }
 }
 
+
+@media (max-width: 768px) {
+  .menu-of-menu-hambuger {
+    top: 50px !important;
+  }
+}
+
 @media (max-width: 768px) {
   .our-hospital-content {
     justify-content: center;
@@ -780,3 +787,22 @@ a.btn-menu-control {
   }
 }
 
+#btnSend[type="button"]:disabled {
+  background-color: #F2F2F2;
+  color: #000000;
+}
+
+#btnSend[type="button"] {
+  background-color: #fcd5b5;
+  color: #000000;
+  border: none;
+}
+
+@media (min-width: 1200px) {
+  .menu-button-component .menu-entry-sub-list-item-list.menu-level-2,
+  .menu-button-component .menu-entry-sub-list-item-list.menu-level-2 li, 
+  .menu-button-component .menu-entry-sub-list-item-list.left-menu-item.menu-level-2 li a {
+    width: 150px;
+    padding-left: 0px;
+  }
+}

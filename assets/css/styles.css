@@ -518,3 +518,7 @@ textarea:focus {
   }
 }
 
+.error {
+  color: #cd5c5c;
+}
+

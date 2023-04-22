@@ -119,6 +119,11 @@ $(document).ready(function () {
     })
  });
 
+   function autoFormatPostCode() {
+      this.formUpdateMember.pref_id = $(".p-region").val();
+      this.formUpdateMember.addr_a = $(".p-locality").val();
+   }
+
  function tracking_view(is_load = false, click_entry = false) {
    let api_url = 'http://room14.ml/ahm10_dev/rt/hr/recruit/tracking_view';
    $.ajax({
@@ -190,11 +195,7 @@ $(document).ready(function () {
     var returnJson = {};
     for (idx = 0; idx < data.length; idx++) {
       if(returnJson[data[idx].name]) {
-         if(typeof returnJson[data[idx].name] == 'string') {
-            returnJson[data[idx].name] =[returnJson[data[idx].name], data[idx].value];
-         } else {
-            returnJson[data[idx].name] = [...returnJson[data[idx].name], data[idx].value];
-         }
+         returnJson[data[idx].name] += ','+data[idx].value;
       } else {
          returnJson[data[idx].name] = data[idx].value;
       }

@@ -1,8 +1,9 @@
 <?php
 if(isset($_GET['token'])) {
-    $token_decode = base64_decode($_GET['token']);
+    $token_decode = $_GET['token'];
+    $token_decode = base64_encode('70-hoank-08072705862');
+    $token_decode = base64_decode($token_decode);
     $data = explode('-', $token_decode);
-    $title_page = $data['0'];
     function callAPI($method, $url, $data){
         $curl = curl_init();
         switch ($method){
@@ -34,9 +35,12 @@ if(isset($_GET['token'])) {
         curl_close($curl);
         return $result;
     }
-    $applicant_id = $data[1];
+    $applicant_id = $data[0];
     $get_data = callAPI('GET', 'http://room14.ml/ahm10_dev/rt/hr/recruit/show/'.$applicant_id, false);
     $response = json_decode($get_data, true);
+    $get_prefs_api = callAPI('GET', 'http://room14.ml/ahm10_dev/rt/api/v1/combobox-data/show/prefecture_id', false);
+    $prefs_api = json_decode($get_prefs_api, true);
+    $prefs = $prefs_api['items'];
 }
 ?>
 <!DOCTYPE html>
@@ -45,7 +49,7 @@ if(isset($_GET['token'])) {
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>dvms</title>
+    <title>キャリア採用サイト確認</title>
     <link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../assets/img/cropped-dvms_logo-1-180x180.png">
     <link rel="icon" type="image/png" sizes="180x180" href="../assets/img/cropped-dvms_logo-1-180x180.png">
     <link rel="icon" type="image/png" sizes="192x192" href="../assets/img/cropped-dvms_logo-1-192x192.png">
@@ -68,7 +72,7 @@ if(isset($_GET['token'])) {
                     <div id="header-title" class="header-title">
                         <div class="logo"><a href="index.html"><img class="img-fluid logo-image" src="../assets/img/top/TOP0.png"></a></div>
                         <div class="page-title-header-2">
-                            <p class="font-size-24 font-20-sp"><strong><?php echo $title_page;?></strong></p>
+                            <p class="font-size-24 font-20-sp"><strong>キャリア採用サイト確認</strong></p>
                         </div>
                     </div>
                     <div class="menu-control--btn"><button class="btn btn-primary menu-control--btn-menu" id="btn-menu" type="button"><span><span>Menu</span></span></button></div>
@@ -107,10 +111,10 @@ if(isset($_GET['token'])) {
                                 <div class="col-sm-12 col-md-12 col-lg-10 col-xl-10 align-self-center col-sm-8 col-md-9 col-lg-10">
                                     <div class="row d-sm-flex">
                                         <div class="col-6 col-sm-3 col-md-2 col-lg-2 col-xl-2 col-xxl-2 d-sm-flex align-self-center align-items-sm-end col-4">
-                                            <div class="dropdown"><button class="btn btn-primary dropdown-toggle text-bg-light border-light" aria-expanded="false" data-bs-toggle="dropdown" id="gender_id" type="button" name="gender_id">性別</button>
-                                                <div class="dropdown-menu"><a class="dropdown-item" href="#" name="gender_id">男</a><a class="dropdown-item" href="#" name="gender_id">女</a></div>
-                                            </div>
-                                        </div>
+                                        <select name="gender_id" class="form-select" aria-label="Default select example">
+                                            <option selected>男</option>
+                                            <option value="1">女</option>
+                                        </select>
                                     </div>
                                 </div>
                             </div>
@@ -131,8 +135,8 @@ if(isset($_GET['token'])) {
                                 <div class="col-sm-12 col-md-12 col-lg-2 col-xl-2 text-start align-self-center" style="padding-top: 6px;"><label class="form-label form-label form-label-style"><span style="color: rgb(0, 0, 0);background-color: transparent;">郵便番号</span></label><label class="form-label form-label form-label-1">(※必須)</label></div>
                                 <div class="col-sm-12 col-md-12 col-lg-10 col-xl-10 align-self-center">
                                     <div class="row">
-                                        <div class="col-6 col-sm-3 d-md-flex align-items-md-center" style="padding-bottom: 8px;padding-right: 6px;"><input class="form-control form-control form-input-1" type="text" required="" minlength="4" maxlength="4" pattern="\d{4}" placeholder="半角数字" name="zip_a" value="<?php echo $response['zip_a'];?>"></div>
-                                        <div class="col-6 col-sm-3 d-md-flex align-items-md-center" style="padding-bottom: 8px;padding-right: 6px;"><input class="form-control form-control form-input-1" type="text" required="" minlength="2" maxlength="2" pattern="\d{2}" placeholder="半角数字" name="zip_b" value="<?php echo $response['zip_b'];?>"></div>
+                                        <div class="col-6 col-sm-3 d-md-flex align-items-md-center" style="padding-bottom: 8px;padding-right: 6px;"><input class="form-control form-control form-input-1" type="text" required="" minlength="3" maxlength="3" pattern="\d{3}" placeholder="半角数字" name="zip_a" value="<?php echo $response['zip_a'];?>"></div>
+                                        <div class="col-6 col-sm-3 d-md-flex align-items-md-center" style="padding-bottom: 8px;padding-right: 6px;"><input class="form-control form-control form-input-1" type="text" required="" minlength="4" maxlength="4" pattern="\d{4}" placeholder="半角数字" name="zip_b" value="<?php echo $response['zip_b'];?>"></div>
                                     </div>
                                 </div>
                             </div>
@@ -141,9 +145,11 @@ if(isset($_GET['token'])) {
                                 <div class="col-12 col-sm-12 col-md-12 col-lg-10 col-xl-10 col-xxl-10 text-start align-self-center" style="padding-top: 6px;">
                                     <div class="row">
                                         <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6 col-xxl-6 align-self-center col-sm-8 py-1">
-                                            <div class="dropdown" id="pref_id"><button class="btn btn-primary dropdown-toggle text-bg-light border-light" aria-expanded="false" data-bs-toggle="dropdown" type="button" style="width: 100%;" name="pref_id" value="<?php echo $response['pref_id'];?>">都道府県</button>
-                                                <div class="dropdown-menu text-center" style="width: 100%;"><a class="dropdown-item" href="#">絡中</a><a class="dropdown-item" href="#">面談予定</a><a class="dropdown-item" href="#">採用</a><a class="dropdown-item" href="#">不採用</a></div>
-                                            </div>
+                                            <select name="pref_id" class="form-select" aria-label="Default select example">
+                                                <?php foreach($prefs as $key => $pref) {?>
+                                                    <option <?php if($pref['code'] == $response['pref_id']) echo selected;?>><?php echo $pref['text'];?></option>
+                                                <?php }?>
+                                            </select>
                                         </div>
                                         <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6 col-xxl-6 align-self-center margin-top-5-sp col-sm-8 py-1"><input class="form-control form-control form-input-1" type="text" placeholder="市区町村" required="" name="addr_a" value="<?php echo $response['addr_a'];?>"></div>
                                         <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6 col-xxl-6 align-self-center margin-top-5-sp col-sm-8 py-1"><input class="form-control form-control form-input-1" type="text" placeholder="番地" required="" name="addr_b" value="<?php echo $response['addr_b'];?>"></div>
@@ -176,10 +182,10 @@ if(isset($_GET['token'])) {
                                 <div class="col-sm-12 col-md-12 col-lg-10 col-xl-10 align-self-center">
                                     <div class="row">
                                         <div class="col-6 col-sm-3 d-md-flex align-items-md-center" style="padding-bottom: 8px;padding-right: 6px;">
-                                            <div class="form-check"><input class="form-check-input" type="radio" name="is_graduated"><label class="form-check-label" for="is_graduated-1">卒業</label></div>
+                                            <div class="form-check"><input class="form-check-input" type="radio" name="is_graduated"  value="卒業"><label class="form-check-label" for="is_graduated-1">卒業</label></div>
                                         </div>
                                         <div class="col-6 col-sm-3 d-md-flex align-items-md-center" style="padding-bottom: 8px;padding-right: 6px;">
-                                            <div class="form-check"><input class="form-check-input" type="radio" name="is_graduated"><label class="form-check-label" for="is_graduated-2">卒業見込</label></div>
+                                            <div class="form-check"><input class="form-check-input" type="radio" name="is_graduated"  value="卒業見込"><label class="form-check-label" for="is_graduated-2">卒業見込</label></div>
                                         </div>
                                     </div>
                                 </div>
@@ -197,13 +203,13 @@ if(isset($_GET['token'])) {
                                 <div class="col-sm-12 col-md-12 col-lg-10 col-xl-10 align-self-center">
                                     <div class="row">
                                         <div class="col-6 col-sm-3 d-md-flex align-items-md-center" style="padding-bottom: 8px;padding-right: 6px;">
-                                            <div class="form-check"><input class="form-check-input" type="radio" name="application_category"><label class="form-check-label" for="formCheck-1">就職</label></div>
+                                            <div class="form-check"><input class="form-check-input" type="radio" name="application_category" id="application_category-1" value="就職"><label class="form-check-label" for="application_category-1">就職</label></div>
                                         </div>
                                         <div class="col-6 col-sm-3 d-md-flex align-items-md-center" style="padding-bottom: 8px;padding-right: 6px;">
-                                            <div class="form-check"><input class="form-check-input" type="radio" id="application_category" name="application_category"><label class="form-check-label" for="formCheck-2">見学</label></div>
+                                            <div class="form-check"><input class="form-check-input" type="radio" id="application_category" name="application_category" id="application_category-2" value="見学"><label class="form-check-label" for="application_category-2">見学</label></div>
                                         </div>
                                         <div class="col-6 col-sm-3 d-md-flex align-items-md-center" style="padding-bottom: 8px;padding-right: 6px;">
-                                            <div class="form-check"><input class="form-check-input" type="radio" id="application_category" name="application_category"><label class="form-check-label" for="is_graduated-3">実習</label></div>
+                                            <div class="form-check"><input class="form-check-input" type="radio" id="application_category" name="application_category" value="実習" id="application_category-3" ><label class="form-check-label" for="application_category-2">実習</label></div>
                                         </div>
                                     </div>
                                 </div>
@@ -225,34 +231,34 @@ if(isset($_GET['token'])) {
                                 <div class="col-sm-12 col-md-12 col-lg-8 col-xl-10 align-self-center col-sm-8 col-md-9 col-lg-10">
                                     <div class="row d-flex" style="margin: 0px;padding: 0px;">
                                         <div class="col-10 col-sm-6 col-md-4 col-lg-4 col-xl-3 col-xxl-3 d-inline-flex align-items-xl-center">
-                                            <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-1" name="desired_dept"><label class="form-check-label" for="formCheck-1">総合診療外科</label></div>
+                                            <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-1" name="desired_dept" value="総合診療外科"><label class="form-check-label" for="formCheck-1">総合診療外科</label></div>
                                         </div>
                                         <div class="col-10 col-sm-6 col-md-4 col-lg-4 col-xl-3 col-xxl-3 d-inline-flex align-items-xl-center">
-                                            <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-11" name="desired_dept"><label class="form-check-label" for="formCheck-11">皮膚科</label></div>
+                                            <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-11" name="desired_dept" value="皮膚科"><label class="form-check-label" for="formCheck-11">皮膚科</label></div>
                                         </div>
                                         <div class="col-10 col-sm-6 col-md-4 col-lg-4 col-xl-3 col-xxl-3 d-inline-flex align-items-xl-center">
-                                            <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-10" name="desired_dept"><label class="form-check-label" for="formCheck-10">眼科</label></div>
+                                            <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-10" name="desired_dept" value="眼科"><label class="form-check-label" for="formCheck-10">眼科</label></div>
                                         </div>
                                         <div class="col-10 col-sm-6 col-md-4 col-lg-4 col-xl-3 col-xxl-3 d-inline-flex align-items-xl-center">
-                                            <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-9" name="desired_dept"><label class="form-check-label" for="formCheck-9">腫瘍科</label></div>
+                                            <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-9" name="desired_dept" value="腫瘍科"><label class="form-check-label" for="formCheck-9">腫瘍科</label></div>
                                         </div>
                                         <div class="col-10 col-sm-6 col-md-4 col-lg-4 col-xl-3 col-xxl-3 d-inline-flex align-items-xl-center">
-                                            <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-8" name="desired_dept"><label class="form-check-label" for="formCheck-8">整形外科</label></div>
+                                            <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-8" name="desired_dept" value="整形外科"><label class="form-check-label" for="formCheck-8">整形外科</label></div>
                                         </div>
                                         <div class="col-10 col-sm-6 col-md-4 col-lg-4 col-xl-3 col-xxl-3 d-inline-flex align-items-xl-center">
-                                            <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-7" name="desired_dept"><label class="form-check-label" for="formCheck-7">軟部外科</label></div>
+                                            <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-7" name="desired_dept" value="軟部外科"><label class="form-check-label" for="formCheck-7">軟部外科</label></div>
                                         </div>
                                         <div class="col-10 col-sm-6 col-md-4 col-lg-4 col-xl-3 col-xxl-3 d-inline-flex align-items-xl-center">
-                                            <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-6" name="desired_dept"><label class="form-check-label" for="formCheck-6">循環器科</label></div>
+                                            <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-6" name="desired_dept" value="循環器科"><label class="form-check-label" for="formCheck-6">循環器科</label></div>
                                         </div>
                                         <div class="col-10 col-sm-6 col-md-4 col-lg-4 col-xl-3 col-xxl-3 d-inline-flex align-items-xl-center">
-                                            <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-5" name="desired_dept"><label class="form-check-label" for="formCheck-5">行動診療科</label></div>
+                                            <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-5" name="desired_dept" value="行動診療科"><label class="form-check-label" for="formCheck-5">行動診療科</label></div>
                                         </div>
                                         <div class="col-10 col-sm-6 col-md-4 col-lg-4 col-xl-3 col-xxl-3 d-inline-flex align-items-xl-center">
-                                            <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-4" name="desired_dept"><label class="form-check-label" for="formCheck-4">麻酔科</label></div>
+                                            <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-4" name="desired_dept" value="麻酔科"><label class="form-check-label" for="formCheck-4">麻酔科</label></div>
                                         </div>
                                         <div class="col-10 col-sm-6 col-md-4 col-lg-4 col-xl-3 col-xxl-3 d-inline-flex align-items-xl-center">
-                                            <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-3" name="desired_dept"><label class="form-check-label" for="formCheck-3">画像診断科</label></div>
+                                            <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-3" name="desired_dept" value="画像診断科"><label class="form-check-label" for="formCheck-3">画像診断科</label></div>
                                         </div>
                                     </div>
                                 </div>
@@ -266,55 +272,55 @@ if(isset($_GET['token'])) {
                                 <div class="col-sm-12 col-md-12 col-lg-8 col-xl-10 align-self-center col-sm-8 col-md-9 col-lg-10">
                                     <div class="row d-flex" style="margin: 0px;padding: 0px;">
                                         <div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3 col-xxl-3 d-inline-flex align-items-xl-center" style="padding-bottom: 8px;">
-                                            <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-2" name="channel"><label class="form-check-label" for="formCheck-2">&nbsp;インターネット検索</label></div>
+                                            <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-2" name="channel" value="インターネット検索"><label class="form-check-label" for="formCheck-2">&nbsp;インターネット検索</label></div>
                                         </div>
                                         <div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3 col-xxl-3 d-inline-flex align-items-xl-center" style="padding-bottom: 8px;">
-                                            <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-27" name="channel"><label class="form-check-label" for="formCheck-27">&nbsp;合同説明会</label></div>
+                                            <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-27" name="channel" value="合同説明会"><label class="form-check-label" for="formCheck-27">&nbsp;合同説明会</label></div>
                                         </div>
                                         <div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3 col-xxl-3 d-inline-flex align-items-xl-center" style="padding-bottom: 8px;">
-                                            <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-26" name="channel"><label class="form-check-label" for="formCheck-26">&nbsp;パンフレットや他紙ツール</label></div>
+                                            <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-26" name="channel" value="パンフレットや他紙ツール"><label class="form-check-label" for="formCheck-26">&nbsp;パンフレットや他紙ツール</label></div>
                                         </div>
                                         <div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3 col-xxl-3 d-inline-flex align-items-xl-center" style="padding-bottom: 8px;">
-                                            <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-25" name="channel"><label class="form-check-label" for="formCheck-25">当院ホームページ</label></div>
+                                            <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-25" name="channel" value="当院ホームページ"><label class="form-check-label" for="formCheck-25">当院ホームページ</label></div>
                                         </div>
                                         <div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3 col-xxl-3 d-inline-flex align-items-xl-center" style="padding-bottom: 8px;">
-                                            <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-24" name="channel"><label class="form-check-label" for="formCheck-24">&nbsp;ハローワーク</label></div>
+                                            <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-24" name="channel" value="ハローワーク"><label class="form-check-label" for="formCheck-24">&nbsp;ハローワーク</label></div>
                                         </div>
                                         <div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3 col-xxl-3 d-inline-flex align-items-xl-center" style="padding-bottom: 8px;">
-                                            <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-23" name="channel"><label class="form-check-label" for="formCheck-23">&nbsp;雑誌広告</label></div>
+                                            <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-23" name="channel" value="雑誌広告"><label class="form-check-label" for="formCheck-23">&nbsp;雑誌広告</label></div>
                                         </div>
                                         <div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3 col-xxl-3 d-inline-flex align-items-xl-center" style="padding-bottom: 8px;">
-                                            <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-22" name="channel"><label class="form-check-label" for="formCheck-22">DVMsセミナー</label></div>
+                                            <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-22" name="channel" value="DVMsセミナー"><label class="form-check-label" for="formCheck-22">DVMsセミナー</label></div>
                                         </div>
                                         <div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3 col-xxl-3 d-inline-flex align-items-xl-center" style="padding-bottom: 8px;">
-                                            <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-21" name="channel"><label class="form-check-label" for="formCheck-21">&nbsp;学校の紹介</label></div>
+                                            <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-21" name="channel" value="学校の紹介"><label class="form-check-label" for="formCheck-21">&nbsp;学校の紹介</label></div>
                                         </div>
                                         <div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3 col-xxl-3 d-inline-flex align-items-xl-center" style="padding-bottom: 8px;">
-                                            <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-20" name="channel"><label class="form-check-label" for="formCheck-20">&nbsp;友人の紹介</label></div>
+                                            <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-20" name="channel" value="友人の紹介"><label class="form-check-label" for="formCheck-20">&nbsp;友人の紹介</label></div>
                                         </div>
                                         <div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3 col-xxl-3 d-inline-flex align-items-xl-center" style="padding-bottom: 8px;">
-                                            <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-19" name="channel"><label class="form-check-label" for="formCheck-19">&nbsp;家族の紹介</label></div>
+                                            <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-19" name="channel" value="家族の紹介"><label class="form-check-label" for="formCheck-19">&nbsp;家族の紹介</label></div>
                                         </div>
                                         <div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3 col-xxl-3 d-inline-flex align-items-xl-center" style="padding-bottom: 8px;">
-                                            <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-18" name="channel"><label class="form-check-label" for="formCheck-18">&nbsp;求人媒体&nbsp;</label></div>
+                                            <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-18" name="channel" value="求人媒体"><label class="form-check-label" for="formCheck-18">&nbsp;求人媒体&nbsp;</label></div>
                                         </div>
                                         <div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3 col-xxl-3 d-inline-flex align-items-xl-center" style="padding-bottom: 8px;">
-                                            <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-17" name="channel"><label class="form-check-label" for="formCheck-17">Facebook</label></div>
+                                            <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-17" name="channel" value="Facebook"><label class="form-check-label" for="formCheck-17">Facebook</label></div>
                                         </div>
                                         <div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3 col-xxl-3 d-inline-flex align-items-xl-center" style="padding-bottom: 8px;">
-                                            <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-16" name="channel"><label class="form-check-label" for="formCheck-16">Twitter</label></div>
+                                            <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-16" name="channel" value="Twitter"><label class="form-check-label" for="formCheck-16">Twitter</label></div>
                                         </div>
                                         <div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3 col-xxl-3 d-inline-flex align-items-xl-center" style="padding-bottom: 8px;">
-                                            <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-15" name="channel"><label class="form-check-label" for="formCheck-15">Instagram</label></div>
+                                            <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-15" name="channel" value="Instagram"><label class="form-check-label" for="formCheck-15">Instagram</label></div>
                                         </div>
                                         <div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3 col-xxl-3 d-inline-flex align-items-xl-center" style="padding-bottom: 8px;">
-                                            <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-14" name="channel"><label class="form-check-label" for="formCheck-14">LINE</label></div>
+                                            <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-14" name="channel" value="LINE"><label class="form-check-label" for="formCheck-14">LINE</label></div>
                                         </div>
                                         <div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3 col-xxl-3 d-inline-flex align-items-xl-center" style="padding-bottom: 8px;">
-                                            <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-13" name="channel"><label class="form-check-label" for="formCheck-13">YouTube</label></div>
+                                            <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-13" name="channel" value="YouTube"><label class="form-check-label" for="formCheck-13">YouTube</label></div>
                                         </div>
                                         <div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3 col-xxl-3 d-inline-flex align-items-xl-center" style="padding-bottom: 8px;">
-                                            <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-12" name="channel"><label class="form-check-label" for="formCheck-12">その他SNS</label></div>
+                                            <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-12" name="channel" value="その他SNS"><label class="form-check-label" for="formCheck-12">その他SNS</label></div>
                                         </div>
                                     </div>
                                 </div>

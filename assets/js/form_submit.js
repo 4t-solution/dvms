@@ -1,21 +1,26 @@
+const chboxSend = $('#chboxSend');
+const btnSend = $('#btnSend');
+$(document).ready(function () {  
+   // count view page
+   tracking_view(true);
 
-$(document).ready(function () {
-   const chboxSend = $('#chboxSend');
-   const btnSend = $('#btnSend');;
    btnSend.attr('disabled', true);
    chboxSend.attr('disabled', true);
 
-   $('#inputForm input').change(function () {
-      let check_form = parseJson();
-      if(check_form[1].length == 0) {
-         chboxSend.attr('disabled', false);
-      }
+   $('#inputForm .form-control, .form-check-input').on('keyup', function () {
+      validate_form();
    })
 
+   $('#inputForm .form-check-input').on('click', function () {
+      validate_form();
+   })
+
+   /**
+    * change checkbox
+    */
    chboxSend.on('change', function() {
       if (this.checked) {
          let check_form = parseJson();
-         console.log(check_form);
          if(check_form[1].length == 0) {
             btnSend.attr('disabled', false);
          }
@@ -33,18 +38,12 @@ $(document).ready(function () {
          given_name_k: "required",
          birth_year: {
             required: true,
-            minlength: 4, //for length of lastname
-            maxlength: 4 //for length of lastname
          },
          birth_month: {
             required: true,
-            minlength: 2, //for length of lastname
-            maxlength: 2 //for length of lastname
          },
          birth_day: {
             required: true,
-            minlength: 2, //for length of lastname
-            maxlength: 2 //for length of lastname
          },
          gender_id: {
             required: true,
@@ -73,18 +72,12 @@ $(document).ready(function () {
          given_name_k: "カナ名は必須です。",
          birth_year: {
               required: "必須",
-              minlength: "誕生年は4文字以内で入力してください",
-              maxlength: "誕生年は4文字以内で入力してください",
          },
          birth_month: {
               required: "必須",
-              minlength: "誕生月は2文字以内で入力してください",
-              maxlength: "誕生月は2文字以内で入力してください",
          },
          birth_day: {
               required: "必須",
-              minlength: "誕生日は2文字以内で入力してください",
-              maxlength: "誕生日は2文字以内で入力してください",
          },
          gender_id: {
             required: "性別は必須です。",
@@ -100,7 +93,7 @@ $(document).ready(function () {
             equalTo: "上記と同じE-mailを入力してください"
          },
          applicant_question: {
-            required: "Eその他ご質問は必須です。",
+            required: "その他ご質問は必須です。",
          },
       }
    });
@@ -120,7 +113,40 @@ $(document).ready(function () {
          validate.showErrors();
       }
     })
+
+    $('.menu-control--btn-entry').click(function() {
+      tracking_view(false, true);
+    })
  });
+
+ function tracking_view(is_load = false, click_entry = false) {
+   let api_url = 'http://room14.ml/ahm10_dev/rt/hr/recruit/tracking_view';
+   $.ajax({
+     url: api_url,
+     method: 'POST',
+     data: {
+      is_load: is_load,
+      click_entry: click_entry,
+     },
+     // Ajaxリクエストが成功した時発動
+     success: function(data) {
+     },
+     // Ajaxリクエストが失敗した時発動
+     error: function(xhr, status, error) {
+        console.log('tracking api error');
+     },
+  })  
+ }
+
+ function validate_form() {
+   let check_form = parseJson();
+   if(check_form[1].length == 0) {
+      chboxSend.attr('disabled', false);
+   } else {
+      chboxSend.attr('disabled', true);
+      btnSend.attr('disabled', true);
+   }
+ }
  
  /**
   * 送信処理
@@ -128,10 +154,10 @@ $(document).ready(function () {
  function submitForm() {
     let applicant_id = $('#applicant_id').val();
     let api_url = 'http://room14.ml/ahm10_dev/rt/hr/recruit/create';
+    let data_form = parseJson();
     if(applicant_id) {
       api_url = 'http://room14.ml/ahm10_dev/rt/hr/recruit/update/' + applicant_id;
     }
-    let data_form = parseJson();
     $.ajax({
       url: api_url,
       method: applicant_id ? 'PUT' : 'POST',
@@ -148,8 +174,11 @@ $(document).ready(function () {
       },
       // Ajaxリクエストが失敗した時発動
       error: function(xhr, status, error) {
-         var err = eval("(" + xhr.responseText + ")");
-         console.log(err.messages.validated_fail);
+         $('#chboxSend').attr('checked', false);
+         $('#chboxSend').attr('disabled', true);
+         $('#btnSend').attr('disabled', true);
+         $('#btnSend').html('送送信する');
+         console.log('error submit form');
       },
    })  
  }
@@ -160,7 +189,15 @@ $(document).ready(function () {
    var error = [];
     var returnJson = {};
     for (idx = 0; idx < data.length; idx++) {
-      returnJson[data[idx].name] = data[idx].value;
+      if(returnJson[data[idx].name]) {
+         if(typeof returnJson[data[idx].name] == 'string') {
+            returnJson[data[idx].name] =[returnJson[data[idx].name], data[idx].value];
+         } else {
+            returnJson[data[idx].name] = [...returnJson[data[idx].name], data[idx].value];
+         }
+      } else {
+         returnJson[data[idx].name] = data[idx].value;
+      }
       if(!data[idx].value) {
          error.push(data[idx].name);
       }

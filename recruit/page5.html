@@ -165,28 +165,28 @@
             <div style="position: relative;">
                 <div class="row font-type-meiryo">
                     <div class="col col-1"></div>
-                    <div class="col">
-                        <form id="inputForm-1">
+                    <div class="col">                        
+                        <form id="inputForm">
                             <div class="row text-center d-flex form-row-1" style="height: 100%;">
                                 <div class="col-sm-12 col-md-12 col-lg-2 col-xl-2 text-start align-self-center" style="padding-top: 6px;"><label class="form-label form-label-style"><span>お名前</span></label><label class="form-label form-label-1"><span>(※必須)</span></label></div>
-                                <div class="col-sm-12 col-md-6 col-lg-5 col-xl-5 align-self-center col-sm-8"><input class="form-control form-control form-input-1" type="text" placeholder="漢字姓" name="family_name" required="true"></div>
-                                <div class="col-sm-12 col-md-6 col-lg-5 col-xl-5 align-self-center col-sm-8 margin-top-5-sp"><input class="form-control form-control form-input-1" type="text" placeholder="漢字名" name="given_name" required="true"></div>
+                                <div class="col-sm-12 col-md-6 col-lg-5 col-xl-5 align-self-center col-sm-8"><input class="form-control form-control form-input-1" type="text" placeholder="漢字姓" name="family_name" id="family_name" required="true"></div>
+                                <div class="col-sm-12 col-md-6 col-lg-5 col-xl-5 align-self-center col-sm-8 margin-top-5-sp"><input class="form-control form-control form-input-1" type="text" placeholder="漢字名" id="given_name" name="given_name" required="true"></div>
                             </div>
                             <div class="row text-center d-flex form-row-1" style="height: 100%;">
                                 <div class="col-sm-12 col-md-12 col-lg-2 col-xl-2 text-start align-self-center" style="padding-top: 6px;"><label class="form-label form-label-style"><span>フリガナ</span></label><label class="form-label form-label-1"><span>(※必須)</span></label></div>
-                                <div class="col-sm-12 col-md-6 col-lg-5 col-xl-5 align-self-center col-sm-8"><input class="form-control form-control form-input-1" type="text" placeholder="カナ姓　全角" name="family_name_k" required="true"></div>
-                                <div class="col-sm-12 col-md-6 col-lg-5 col-xl-5 align-self-center col-sm-8 margin-top-5-sp"><input class="form-control form-control form-input-1" type="text" placeholder="カナ名　全角" name="given_name_k" required="true"></div>
+                                <div class="col-sm-12 col-md-6 col-lg-5 col-xl-5 align-self-center col-sm-8"><input class="form-control form-control form-input-1" type="text" placeholder="カナ姓　全角" id="family_name_k" name="family_name_k" required="true"></div>
+                                <div class="col-sm-12 col-md-6 col-lg-5 col-xl-5 align-self-center col-sm-8 margin-top-5-sp"><input class="form-control form-control form-input-1" type="text" placeholder="カナ名　全角"  id="given_name_k" name="given_name_k" required="true"></div>
                             </div>
                             <div class="row text-center d-flex form-row-1" style="height: 100%;">
                                 <div class="col-sm-12 col-md-12 col-lg-2 col-xl-2 text-start align-self-center" style="padding-top: 6px;"><label class="form-label form-label-style"><span>生年月日</span></label><label class="form-label form-label-1"><span>(※必須)</span></label></div>
                                 <div class="col-sm-12 col-md-12 col-lg-10 col-xl-10 align-self-center">
                                     <div class="row">
-                                        <div class="col-sm-3 d-md-flex align-items-md-center col-6" style="padding-bottom: 8px;padding-right: 6px;"><input class="form-control form-control form-input-1" type="text" placeholder="半角数字" name="birth_year" required="true" pattern="\d{4}" maxlength="4" minlength="4"></div>
-                                        <div class="col-sm-1 col-lg-1 d-sm-flex align-items-sm-end col-6" style="padding-bottom: 8px;padding-left: 0px;"><label class="form-label text-start col-form-label d-sm-flex align-items-sm-end col-1 font-size-16" style="width: 100%;">年</label></div>
-                                        <div class="col-sm-3 d-md-flex align-items-md-center col-6" style="padding-bottom: 8px;padding-right: 6px;"><input class="form-control form-control form-input-1" type="text" placeholder="半角数字" name="birth_month" required="true" pattern="\d{2}" maxlength="2" minlength="2"></div>
-                                        <div class="col-sm-1 col-lg-1 d-sm-flex align-items-sm-end col-6" style="padding-bottom: 8px;padding-left: 0px;"><label class="form-label text-start col-form-label d-sm-flex align-items-sm-end col-1 font-size-16" style="width: 100%;">月</label></div>
-                                        <div class="col-sm-3 d-md-flex align-items-md-center col-6" style="padding-bottom: 8px;padding-right: 6px;"><input class="form-control form-control form-input-1" type="text" placeholder="半角数字" name="birth_day" required="true" pattern="\d{2}" maxlength="2" minlength="2"></div>
-                                        <div class="col-sm-1 col-lg-1 d-sm-flex align-items-sm-end col-6" style="padding-bottom: 8px;padding-left: 0px;"><label class="form-label text-start col-form-label d-sm-flex align-items-sm-end col-1 font-size-16" style="width: 100%;">日</label></div>
+                                        <div class="col-sm-3 d-md-flex align-items-md-center col-6" style="padding-bottom: 8px;padding-right: 6px;"><input class="form-control form-control form-input-1" type="text" placeholder="半角数字" id="birth_year" name="birth_year" required="true" pattern="\d{4}" maxlength="4" minlength="4"></div>
+                                        <div class="col-sm-1 col-lg-1 d-sm-flex align-items-sm-end col-6 text-start" style="padding-bottom: 8px;padding-left: 0px;"><label class="form-label col-form-label d-sm-flex align-items-sm-end col-1 font-size-16" style="width: 100%;">年</label></div>
+                                        <div class="col-sm-3 d-md-flex align-items-md-center col-6" style="padding-bottom: 8px;padding-right: 6px;"><input class="form-control form-control form-input-1" type="text" placeholder="半角数字" id="birth_month"  name="birth_month" required="true" pattern="\d{2}" maxlength="2" minlength="2"></div>
+                                        <div class="col-sm-1 col-lg-1 d-sm-flex align-items-sm-end col-6 text-start" style="padding-bottom: 8px;padding-left: 0px;"><label class="form-label col-form-label d-sm-flex align-items-sm-end col-1 font-size-16" style="width: 100%;">月</label></div>
+                                        <div class="col-sm-3 d-md-flex align-items-md-center col-6" style="padding-bottom: 8px;padding-right: 6px;"><input class="form-control form-control form-input-1" type="text" placeholder="半角数字" id="birth_day" name="birth_day" required="true" pattern="\d{2}" maxlength="2" minlength="2"></div>
+                                        <div class="col-sm-1 col-lg-1 d-sm-flex align-items-sm-end col-6 text-start" style="padding-bottom: 8px;padding-left: 0px;"><label class="form-label col-form-label d-sm-flex align-items-sm-end col-1 font-size-16" style="width: 100%;">日</label></div>
                                     </div>
                                 </div>
                             </div>
@@ -195,7 +195,7 @@
                                 <div class="col-sm-12 col-md-12 col-lg-10 col-xl-10 align-self-center col-sm-8 col-md-9 col-lg-10">
                                     <div class="row d-sm-flex">
                                         <div class="col-6 col-sm-3 col-md-2 col-lg-2 col-xl-2 col-xxl-2 d-sm-flex align-self-center align-items-sm-end col-4">
-                                            <div class="d-md-flex d-xl-flex align-items-md-start align-items-xl-center form-check" style="height: 100%;padding-top: 0;max-width: 100%;"><input type="radio" id="formCheck-1" class="form-check-input" style="height: 18px;width: 18px;margin-top: 0;" value="0" name="gender_id" required="true"><label class="form-label form-check-label font-size-16" for="formCheck-4" style="padding-left: 4px;margin-bottom: 0px;">男性</label></div>
+                                            <div class="d-md-flex d-xl-flex align-items-md-start align-items-xl-center form-check" style="height: 100%;padding-top: 0;max-width: 100%;"><input type="radio" id="formCheck-4" class="form-check-input" style="height: 18px;width: 18px;margin-top: 0;" value="0" name="gender_id"><label class="form-label form-check-label font-size-16" for="formCheck-4" style="padding-left: 4px;margin-bottom: 0px;">男性</label></div>
                                         </div>
                                         <div class="col-6 col-sm-3 col-md-2 col-lg-2 col-xl-2 col-xxl-2 d-sm-flex align-self-center align-items-sm-end col-4">
                                             <div class="form-check d-md-flex d-xl-flex align-items-md-start align-items-xl-center" style="height: 100%;padding-top: 0;max-width: 100%;"><input type="radio" id="formCheck-2" class="form-check-input" style="height: 18px;width: 18px;margin-top: 0;" value="1" name="gender_id"><label class="form-label form-check-label font-size-16" for="formCheck-1" style="padding-left: 4px;margin-bottom: 0px;">女性</label></div>
@@ -208,19 +208,19 @@
                             </div>
                             <div class="row text-center d-flex form-row-1" style="height: 100%;">
                                 <div class="col-sm-12 col-md-12 col-lg-2 col-xl-2 text-start align-self-center" style="padding-top: 6px;"><label class="form-label form-label-style"><span>電話番号</span></label><label class="form-label form-label-1"><span>(※必須)</span></label></div>
-                                <div class="col-sm-12 col-md-12 col-lg-10 col-xl-10 align-self-center col-sm-8 col-md-9 col-lg-10"><input class="form-control form-control form-input-1" type="text" placeholder="半角数字" name="phone_number" required="true"></div>
+                                <div class="col-sm-12 col-md-12 col-lg-10 col-xl-10 align-self-center col-sm-8 col-md-9 col-lg-10"><input class="form-control form-control form-input-1" type="text" placeholder="半角数字" id="tel" name="tel" required="true"></div>
                             </div>
                             <div class="row text-center d-flex form-row-1" style="height: 100%;">
                                 <div class="col-sm-12 col-md-12 col-lg-2 col-xl-2 text-start align-self-center" style="padding-top: 6px;"><label class="form-label form-label-style"><span>E-mail</span></label><label class="form-label form-label-1"><span>(※必須)</span></label></div>
-                                <div class="col-sm-12 col-md-12 col-lg-10 col-xl-10 align-self-center col-sm-8 col-md-9 col-lg-10"><input class="form-control form-control form-input-1" type="text" name="phone_number" required="true"></div>
+                                <div class="col-sm-12 col-md-12 col-lg-10 col-xl-10 align-self-center col-sm-8 col-md-9 col-lg-10"><input class="form-control form-control form-input-1" type="mail" name="mail" id="mail" required="true"></div>
                             </div>
                             <div class="row text-center d-flex form-row-1" style="height: 100%;">
                                 <div class="col-sm-12 col-md-12 col-lg-2 col-xl-2 text-start align-self-center" style="padding-top: 6px;"><label class="form-label form-label-style"><span>E-mail確認用</span></label><label class="form-label form-label-1"><span>(※必須)</span></label></div>
-                                <div class="col-sm-12 col-md-12 col-lg-10 col-xl-10 align-self-center col-sm-8 col-md-9 col-lg-10"><input class="form-control form-control form-input-1" type="text" name="phone_number" required="true"></div>
+                                <div class="col-sm-12 col-md-12 col-lg-10 col-xl-10 align-self-center col-sm-8 col-md-9 col-lg-10"><input class="form-control form-control form-input-1" type="mail" name="mail_confirm"  id="mail_confirm" required="true"></div>
                             </div>
                             <div class="row text-center d-flex form-row-1" style="height: 100%;">
                                 <div class="col-sm-12 col-md-12 col-lg-2 col-xl-2 text-start align-self-center" style="padding-top: 6px;"><label class="form-label form-label-style"><span>その他ご質問</span></label><label class="form-label form-label-1"><span>(※必須)</span></label></div>
-                                <div class="col-sm-12 col-md-12 col-lg-10 col-xl-10 align-self-center col-sm-8 col-md-9 col-lg-10"><textarea class="form-control form-control form-input-1" style="width: 100%;"></textarea></div>
+                                <div class="col-sm-12 col-md-12 col-lg-10 col-xl-10 align-self-center col-sm-8 col-md-9 col-lg-10"><textarea class="form-control form-control form-input-1" style="width: 100%;"  id="applicant_question"  name="applicant_question"></textarea></div>
                             </div>
                         </form>
                     </div>
@@ -232,7 +232,7 @@
                         <p class="font-size-16 font-type-meiryo">個人情報の取扱いに同意の上、送信してください</p>
                         <div tyle="position: relative;">
                             <p class="font-size-16 font-type-meiryo" style="display: inline;">送信後、確認メールが届きます</p>
-                            <div id="checkbox-1" class="text-center justify-content-center align-items-center" style="display: inline-block;padding-left: 16px;padding-bottom: 0;"><input type="checkbox" id="chboxSend-1" class="align-items-center" style="width: 20px;height: 20px;"></div>
+                            <div id="checkbox" class="text-center justify-content-center align-items-center" style="display: inline-block;padding-left: 16px;padding-bottom: 0;"><input type="checkbox" id="chboxSend" class="align-items-center" style="width: 20px;height: 20px;"></div>
                         </div>
                     </div>
                     <div class="text-center" style="padding-top: 32px;padding-bottom: 32px;"><button class="btn btn-primary btn btn-outline-primary active font-size-24" id="btnSend" type="button" style="width: 300px;height: 80px;">送信する</button></div>
@@ -270,6 +270,7 @@
     </footer>
     <script src="../assets/bootstrap/js/bootstrap.min.js"></script>
     <script src="../assets/js/jquery-3.6.4.min.js"></script>
+    <script src="../assets/js/jquery.validate.min.js"></script>
     <script src="../assets/js/form_submit.js"></script>
     <script src="../assets/js/menu.js"></script>
     <script src="../assets/js/script.js"></script>

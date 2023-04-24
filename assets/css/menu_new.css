@@ -453,7 +453,7 @@ a.btn-menu-control {
 }
 
 .font-size-32 {
-  font-size: 32px;
+  font-size: 24px;
 }
 
 #menu_new, #menu_car {
@@ -636,7 +636,9 @@ a.btn-menu-control {
   .logo-image {
     width: 65px;
   }
+}
 
+@media (max-width: 750px) {
   .font-size-32 {
     font-size: 24px;
   }
@@ -652,9 +654,11 @@ a.btn-menu-control {
   .header-title.is-top {
     width: calc(100% - 140px) !important;
   }
+}
 
+@media (max-width: 750px) {
   .menu-control--btn button {
-    width: 70px !important;;
+    width: 70px !important;
   }
 }
 
@@ -662,41 +666,57 @@ a.btn-menu-control {
   .stack-on-small {
     display: block;
   }
+}
 
+@media (max-width: 576px) {
   .logo {
     width: 63px;
   }
+}
 
+@media (max-width: 576px) {
   .page-title-header-2 {
     position: absolute;
-    top: 0px !important;;
+    top: 0px !important;
     font-weight: 800;
     left: 60px;
   }
+}
 
-  .page-title-header-2 p {    
+@media (max-width: 576px) {
+  .page-title-header-2 p {
     font-size: 15px !important;
   }
+}
 
+@media (max-width: 576px) {
   .header-title {
-    width: calc(100% - 55px) !important;;
+    width: calc(100% - 55px) !important;
   }
+}
 
+@media (max-width: 576px) {
   .menu-control--btn button {
     height: 45px !important;
     width: 50px !important;
     font-size: 12px;
   }
+}
 
+@media (max-width: 576px) {
   .navbar .nav-container .menu-of-menu-hambuger a {
     font-size: 15px;
     padding: 5px;
   }
+}
 
+@media (max-width: 576px) {
   .font-sie-title-002 {
     font-size: 20px;
   }
+}
 
+@media (max-width: 576px) {
   .header-title.is-top {
     width: calc(100% - 100px) !important;
   }
@@ -727,7 +747,6 @@ a.btn-menu-control {
     justify-content: center;
   }
 }
-
 
 @media (max-width: 768px) {
   .menu-of-menu-hambuger {
@@ -777,11 +796,15 @@ a.btn-menu-control {
   .header-title.is-top {
     width: calc(100% - 100px) !important;
   }
+}
 
+@media (max-width: 375px) {
   .menu-control--btn button {
     width: 50px;
   }
+}
 
+@media (max-width: 375px) {
   .menu-control--btn {
     right: 0px !important;
   }
@@ -799,10 +822,9 @@ a.btn-menu-control {
 }
 
 @media (min-width: 1200px) {
-  .menu-button-component .menu-entry-sub-list-item-list.menu-level-2,
-  .menu-button-component .menu-entry-sub-list-item-list.menu-level-2 li, 
-  .menu-button-component .menu-entry-sub-list-item-list.left-menu-item.menu-level-2 li a {
+  .menu-button-component .menu-entry-sub-list-item-list.menu-level-2, .menu-button-component .menu-entry-sub-list-item-list.menu-level-2 li, .menu-button-component .menu-entry-sub-list-item-list.left-menu-item.menu-level-2 li a {
     width: 150px;
     padding-left: 0px;
   }
 }
+

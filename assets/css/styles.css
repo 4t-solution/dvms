@@ -35,6 +35,10 @@ body div p {
   font-size: 20px;
 }
 
+.font-size-18 {
+  font-size: 18px;
+}
+
 .font-size-24 {
   font-size: 24px;
 }
@@ -58,6 +62,48 @@ body div p {
 .description-text p {
   color: #fff;
   font-size: 41px;
+}
+
+@media (min-width: 300px) {
+  .description-text p {
+    color: #fff;
+    font-size: 13px !important;
+  }
+}
+
+@media (min-width: 576px) {
+  .description-text p {
+    color: #fff;
+    font-size: 22px !important;
+  }
+}
+
+@media (min-width: 768px) {
+  .description-text p {
+    color: #fff;
+    font-size: 28px !important;
+  }
+}
+
+@media (min-width: 992px) {
+  .description-text p {
+    color: #fff;
+    font-size: 34px !important;
+  }
+}
+
+@media (min-width: 1200px) {
+  .description-text p {
+    color: #fff;
+    font-size: 40px !important;
+  }
+}
+
+@media (min-width: 1400px) {
+  .description-text p {
+    color: #fff;
+    font-size: 44px !important;
+  }
 }
 
 .img-title-heading {
@@ -119,6 +165,10 @@ body div p {
 
 .font-18 {
   font-size: 1.5rem;
+}
+
+.font-16 {
+  font-size: 1.3rem;
 }
 
 .bg-orange-gray-100 {
@@ -229,6 +279,12 @@ footer .inner {
 @media (max-width: 765px) {
   .font-16-sp {
     font-size: 16px !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .font-18-sp {
+    font-size: 18px !important;
   }
 }
 
@@ -422,12 +478,6 @@ textarea:focus {
 }
 
 @media (max-width: 768px) {
-  .logo {
-    width: 63px;
-  }
-}
-
-@media (max-width: 768px) {
   .page-title-header-2 {
     position: absolute;
     top: 10px;
@@ -456,7 +506,7 @@ textarea:focus {
 
 @media (max-width: 768px) {
   .header-title.is-top p {
-    font-size: 10px !important;
+    /*font-size: 10px !important;*/
   }
 }
 
@@ -518,7 +568,6 @@ textarea:focus {
   }
 }
 
-.error {
-  color: #cd5c5c;
+.fs-0007.title-underline {
 }
 

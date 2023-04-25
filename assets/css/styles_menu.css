@@ -119,13 +119,6 @@
   font-family: 'Meiryo UI’, Meiryo, メイリオ, Osaka';
 }
 
-.page-title-header-2 {
-  position: absolute;
-  top: 25px;
-  left: 120px;
-  font-weight: 800;
-}
-
 .page-title-header {
   position: absolute;
   top: 5px;

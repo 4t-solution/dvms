@@ -49,7 +49,7 @@ if(isset($_GET['token'])) {
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>キャリア採用サイト確認</title>
+    <title>DVMsどうぶつ医療センター横浜　求人エントリーフォーム</title>
     <link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../assets/img/cropped-dvms_logo-1-180x180.png">
     <link rel="icon" type="image/png" sizes="180x180" href="../assets/img/cropped-dvms_logo-1-180x180.png">
     <link rel="icon" type="image/png" sizes="192x192" href="../assets/img/cropped-dvms_logo-1-192x192.png">
@@ -62,6 +62,14 @@ if(isset($_GET['token'])) {
     <link rel="stylesheet" href="../assets/css/styles.css">
     <link rel="stylesheet" href="../assets/css/Testimonials-images.css">
     <link rel="stylesheet" href="../assets/css/top.css">    
+    <style>
+        @media (min-width: 750px)  {
+            .update-form {
+                left: 300px !important;
+                top: 30px !important;
+            }
+        }
+    </style>
 </head>
 
 <body>
@@ -71,11 +79,10 @@ if(isset($_GET['token'])) {
                 <div class="container nav-container menu-list menu-list-fixed p-0" id="menu-list-fixed">
                     <div id="header-title" class="header-title">
                         <div class="logo"><a href="index.html"><img class="img-fluid logo-image" src="../assets/img/top/TOP0.png"></a></div>
-                        <div class="page-title-header-2">
-                            <p class="font-size-24 font-20-sp"><strong>キャリア採用サイト確認</strong></p>
+                        <div class="page-title-header-2 update-form">
+                            <p class="font-size-24 font-20-sp"><strong>DVMsどうぶつ医療センター横浜　求人エントリーフォーム</strong></p>
                         </div>
                     </div>
-                    <div class="menu-control--btn"><button class="btn btn-primary menu-control--btn-menu" id="btn-menu" type="button"><span><span>Menu</span></span></button></div>
                 </div>
             </div>
         </header>
@@ -89,7 +96,7 @@ if(isset($_GET['token'])) {
                         <form id="inputForm" class="wrap12 h-adr">
                             <span class="p-country-name" style="display:none;">Japan</span>
                             <div class="row d-flex form-row-1 py-2" style="height: 100%;">
-                                <div class="col-sm-12 col-md-12 col-lg-2 col-xl-2 text-start align-self-center" style="padding-top: 6px;"><label class="form-label form-label form-label-style"><span style="color: rgb(0, 0, 0);background-color: transparent;">応募者ＩＤ</span></label><label class="form-label form-label form-label-1">(※必須)</label></div>
+                                <div class="col-sm-12 col-md-12 col-lg-2 col-xl-2 text-start align-self-center" style="padding-top: 6px;"><label class="form-label form-label form-label-style"><span style="color: rgb(0, 0, 0);background-color: transparent;">応募者ＩＤ</span></label></div>
                                 <div class="col-sm-12 col-md-12 col-lg-10 col-xl-10 align-self-center col-sm-8 col-md-9 col-lg-10"><input class="form-control form-control form-input" type="text" required="" placeholder="" disabled="" name="applicant_info_id"></div>
                             </div>
                             <div class="row text-center d-flex form-row-1 py-2" style="height: 100%;">
@@ -133,7 +140,7 @@ if(isset($_GET['token'])) {
                                 <div class="col-sm-12 col-md-12 col-lg-10 col-xl-10 align-self-center">
                                     <div class="row">
                                         <div class="col-6 col-sm-3 d-md-flex align-items-md-center " style="padding-bottom: 8px;padding-right: 6px;"><input class="form-control form-control form-input p-postal-code" type="text" required="" minlength="3" maxlength="3" pattern="\d{3}" placeholder="半角数字" name="zip_a"></div>
-                                        <div class="col-6 col-sm-3 d-md-flex align-items-md-center" style="padding-bottom: 8px;padding-right: 6px;"><input class="form-control form-control form-input p-postal-code" keyup="autoFormatPostCode()" type="text" required="" minlength="4" maxlength="4" pattern="\d{4}" placeholder="半角数字" name="zip_b"></div>
+                                        <div class="col-6 col-sm-3 d-md-flex align-items-md-center" style="padding-bottom: 8px;padding-right: 6px;"><input class="form-control form-control form-input p-postal-code" type="text" required="" minlength="4" maxlength="4" pattern="\d{4}" placeholder="半角数字" name="zip_b"></div>
                                     </div>
                                 </div>
                             </div>
@@ -142,7 +149,7 @@ if(isset($_GET['token'])) {
                                 <div class="col-12 col-sm-12 col-md-12 col-lg-10 col-xl-10 col-xxl-10 text-start align-self-center" style="padding-top: 6px;">
                                     <div class="row">
                                         <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6 col-xxl-6 align-self-center col-sm-8 py-1">
-                                            <select name="pref_id" class="p-region form-select" aria-label="Default select example">
+                                            <select name="pref_id" id="pref_id" class="p-region form-select" aria-label="Default select example">
                                                 <?php foreach($prefs as $key => $pref) {?>
                                                     <option><?php echo $pref['text'];?></option>
                                                 <?php }?>
@@ -327,9 +334,14 @@ if(isset($_GET['token'])) {
                     <div class="col-1"></div>
                 </div>
                 <div class="row">
+                    <div class="space-2x"></div>
+                    <div>
+                        <p class="font-size-16 font-type-meiryo">個人情報のお取り扱いについての同意</p>
+                        <p class="font-size-16 font-type-meiryo">本フォームからお客様が記入・登録された個人情報は、内容確認・電子メール送信・電話連絡などの目的で利用・保管します。</p>
+                    </div>
                     <div class="col">
                         <div style="position: relative;">
-                            <p class="font-size-16 font-type-meiryo" style="display: inline;"> 上記内容に同意する</p>
+                            <p class="font-size-16 font-type-meiryo" style="display: inline;">個人情報の取扱いに同意の上、送信してください</p>
                             <div class="text-center justify-content-center align-items-center" id="checkbox" style="display: inline-block;padding-left: 16px;padding-bottom: 0;" type="checkbox"><input class="align-items-center" type="checkbox" id="chboxSend" style="width: 20px;height: 20px;" name="is_agreed"></div>
                         </div>
                     </div>
@@ -357,7 +369,7 @@ if(isset($_GET['token'])) {
                   </div>
                   <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">キャンセル</button>
-                    <button type="button" class="btn btn-primary">OK</button>
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">OK</button>
                   </div>
                </div>
             </div>

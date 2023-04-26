@@ -31,14 +31,23 @@ $(document).ready(function () {
             check_form[1].push('tel');
          };
 
-         if (check_form[1].length == 0) {
+         if (check_form[1].length == 0 && (check_form[0]['mail'] == check_form[0]['mail_confirm'])) {
             btnSend.attr('disabled', false);            
          } else {
+            $('.alert-danger').remove();
             var html = '<div class="alert alert-danger" role="alert">';
-            html += '<p class="text-center">'+ getNameLabelInput(check_form[1][0]) +'は必須です。</p>';
+            if(check_form[1][0] == 'tel' && check_form[0]['tel']) {
+               html += '<p class="text-center">TELは半角数値のみ入力してください。</p>';
+            } else if(check_form[0]['mail'] != check_form[0]['mail_confirm']) {
+               html += '<p class="text-center">E-mail確認用とE-mailが一致しません。</p>';
+            } else {
+               html += '<p class="text-center">'+ getNameLabelInput(check_form[1][0]) +'は必須です。</p>';
+            }
             html += '</div>';
+            
             $(html).insertBefore(btnSend);
             btnSend.attr('disabled', true);
+            chboxSend.prop('checked', false);
          }
       } else {
          btnSend.attr('disabled', true);
@@ -108,7 +117,8 @@ function tracking_view(is_load = false, click_entry = false) {
    })
 }
 
-function validate_form() {
+function validate_form() {   
+   $('.alert-danger').remove();
    this.reset_btn_submit();
    let check_form = parseJson();
    if (check_form[1].length == 0) {

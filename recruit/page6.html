@@ -270,8 +270,8 @@
                                 <div class="col-sm-12 col-md-12 col-lg-10 col-xl-10 align-self-center col-sm-8 col-md-9 col-lg-10"><input class="form-control form-control form-input-1" type="mail" name="mail_confirm" id="mail_confirm" required="true"></div>
                             </div>
                             <div class="row text-center d-flex form-row-1" style="height: 100%;">
-                                <div class="col-sm-12 col-md-12 col-lg-2 col-xl-2 text-start align-self-center" style="padding-top: 6px;"><label class="col-form-label form-label form-label-style"><span>その他ご質問</span></label></div>
-                                <div class="col-sm-12 col-md-12 col-lg-10 col-xl-10 align-self-center col-sm-8 col-md-9 col-lg-10"><textarea class="form-control form-control form-control form-input-1" style="width: 100%;"></textarea></div>
+                                <div class="col-sm-12 col-md-12 col-lg-2 col-xl-2 text-start align-self-center" style="padding-top: 6px;"><label class="form-label form-label-style"><span>その他ご質問</span></label></div>
+                                <div class="col-sm-12 col-md-12 col-lg-10 col-xl-10 align-self-center col-sm-8 col-md-9 col-lg-10"><textarea class="form-control form-control form-input-1" style="width: 100%;"  id="applicant_question" name="applicant_question"></textarea></div>
                             </div>
                         </form>
                     </div>
@@ -283,7 +283,22 @@
                             <p class="font-size-16 font-type-meiryo" style="display: inline;">送信後、確認メールが届きます</p>
                             <div id="checkbox-1" class="text-center justify-content-center align-items-center" style="display: inline-block;padding-left: 16px;padding-bottom: 0;"><input type="checkbox" id="chboxSend" class="align-items-center" style="width: 20px;height: 20px;"></div>
                         </div>
-                    </div><div class="text-center" style="padding-top: 32px;padding-bottom: 32px;"><button class="btn btn-primary btn btn-outline-primary active font-size-24" id="btnSend" type="button" style="width: 300px;height: 80px;">送信する</button></div>
+                    </div>
+                    <div class="text-center" style="padding-top: 32px;padding-bottom: 32px;"><button class="btn btn-primary btn btn-outline-primary active font-size-24" id="btnSend" type="button" style="width: 300px;height: 80px;">送信する</button></div>
+                </div>
+            </div>
+        </div>
+        <div class="modal" role="dialog" tabindex="-1" id="confirm_modal">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">登録確認</h5>
+                        </button><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div id="content_confirm"></div>
+                    </div>
+                    <div class="modal-footer"><button class="btn btn-primary" type="button" data-bs-dismiss="modal">OK</button></div>
                 </div>
             </div>
         </div>

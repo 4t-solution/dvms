@@ -74,28 +74,15 @@ $(document).ready(function () {
       tracking_view(false, true);
    })
  });
-
- function getNameLabelInput(id) {
-   const arr = {
-      'family_name': '漢字姓',
-      'given_name': '漢字名',
-      'family_name_k': 'カナ姓',
-      'given_name_k': 'カナ姓名',
-      'birth_year': '生年月日',
-      'birth_month': '生年月日',
-      'birth_day': '生年月日',
-      'gender_id': '性別',
-      'tel': '電話番号',
-      'mail': 'E-mail',
-      'mail_confirm': 'E-mail確認用',
-   };
-
-   return arr[id];
- }
  
 function reset_btn_submit() {
    chboxSend.attr('disabled', true);
    btnSend.attr('disabled', true);
+}
+
+function autoFormatPostCode() {
+   this.formUpdateMember.pref_id = $(".p-region").val();
+   this.formUpdateMember.addr_a = $(".p-locality").val();
 }
 
 function tracking_view(is_load = false, click_entry = false) {
@@ -121,6 +108,7 @@ function validate_form() {
    $('.alert-danger').remove();
    this.reset_btn_submit();
    let check_form = parseJson();
+   console.log(check_form[1]);
    if (check_form[1].length == 0) {
       chboxSend.attr('disabled', false);
       if($('#chboxSend').is(':checked')) {
@@ -168,9 +156,10 @@ function validate_form() {
        // Ajaxリクエストが成功した時発動
       success: function (data) {
          $('#btnSend').html(
-            `送信する`
+            `送送信する`
          );
-         var html = `<p>ご登録ありがとうございました。後日、担当よりご連絡いたします。</p>`;
+         var html = `<p>登録に成功しました。</p>
+         <p>ご入力いただいたメールアドレス宛に受付確認メールをお送りしましたのでご確認ください。</p>`;
          $('#confirm_modal #content_confirm').html(html);
          $('#confirm_modal').modal('show');
        },
@@ -179,7 +168,7 @@ function validate_form() {
          $('#chboxSend').attr('checked', false);
          $('#chboxSend').attr('disabled', true);
          $('#btnSend').attr('disabled', true);
-         $('#btnSend').html('送信する');
+         $('#btnSend').html('送送信する');
          console.log('error submit form');
        },
     })
@@ -199,17 +188,15 @@ function parseJson() {
    ];
    let data = $('#inputForm').serializeArray();
    var error = [];
-   var returnJson = {};
-   for (idx = 0; idx < data.length; idx++) {
+    var returnJson = {};
+    for (idx = 0; idx < data.length; idx++) {
       if (returnJson[data[idx].name]) {
          returnJson[data[idx].name] += ',' + data[idx].value;
       } else {
          returnJson[data[idx].name] = data[idx].value;
-      }
-      
+    }
       if (!data[idx].value) {
-         if($.inArray(data[idx].name, arr_validate_not_required) == -1 &&
-          $.inArray(data[idx].name, error) == -1) {
+         if($.inArray(data[idx].name, arr_validate_not_required) == -1) {
             error.push(data[idx].name);
          }
       }

@@ -9,7 +9,7 @@
     <link rel="icon" type="image/png" sizes="180x180" href="../assets/img/cropped-dvms_logo-1-180x180.png">
     <link rel="icon" type="image/png" sizes="192x192" href="../assets/img/cropped-dvms_logo-1-192x192.png">
     <link rel="stylesheet" href="../assets/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../assets/css/animate.min.css">
+    <link rel="stylesheet" href="../assets/css/aos.min.css">
     <link rel="stylesheet" href="../assets/css/font-size.css">
     <link rel="stylesheet" href="../assets/css/animate.min.css">
     <link rel="stylesheet" href="../assets/css/Features-Large-Icons-icons.css">
@@ -81,9 +81,9 @@
                         <p class="font-18"><span style="color: rgb(64, 64, 64);">私たちは、動物たちとそのご家族に、本当に必要な医療を提供することを目指しています。</span></p>
                     </div>
                     <div class="row text-center d-flex justify-content-center" id="section_history" style="width: 100%;">
-                        <div class="col-7 col-sm-5 col-md-4 col-lg-3 col-xl-3 col-xxl-3 img-fluid"><img src="../assets/img/common/our_history.jpg" style="height: 40px;margin-bottom: 20px;"></div>
+                        <div class="col-7 col-sm-5 col-md-4 col-lg-3 col-xl-3 col-xxl-3 img-fluid blurTrigger"><img src="../assets/img/common/our_history.jpg" style="height: 40px;margin-bottom: 20px;"></div>
                     </div>
-                    <div class="d-flex align-items-center align-items-md-start align-items-xl-center">
+                    <div class="d-flex align-items-center align-items-md-start align-items-xl-center blurTrigger">
                         <div>
                             <div class="margin-bottom-24"><span class="fs-0005 title-underline">動物医療に携わるすべての方のための医療施設を獣医師の手で立ち上げる</span></div>
                             <div>
@@ -111,10 +111,10 @@
             <div class="row section_hospital">
                 <div class="col-12 col-md-12 col-xl-12">
                     <div class="row text-center d-flex justify-content-center">
-                        <div class="col-7 col-sm-5 col-md-4 col-lg-3 col-xl-3 col-xxl-3 img-fluid"><img id="section_hospital" src="../assets/img/common/our_hospital.jpg" style="height: 40px;margin-bottom: 20px;"></div>
+                        <div class="col-7 col-sm-5 col-md-4 col-lg-3 col-xl-3 col-xxl-3 img-fluid blurTrigger"><img id="section_hospital" src="../assets/img/common/our_hospital.jpg" style="height: 40px;margin-bottom: 20px;"></div>
                     </div>
                     <div class="row our-hospital-content">
-                        <div class="col-12 col-xl-4 bounce animated bg-orange-gray col-xs-12 column-3-contents p-0" style="width: calc(100% - 24px);">
+                        <div class="col-12 col-xl-4 bg-orange-gray col-xs-12 column-3-contents p-0" data-aos="fade-up" data-aos-duration="800" style="width: calc(100% - 24px);">
                             <div class="d-flex">
                                 <div class="container text-center our-history-title px-2"><a class="underline-hover" href="https://yokohama-dvms.com/sp/#tpt01" target="_blank"><p class="fw-bold text-center" style="color: black;margin-right: 0px;">8つの専門診療科<br>幅広い知識と経験を積む</p></a></div>
                             </div>
@@ -131,7 +131,7 @@
                                 </ul>
                             </div>
                         </div>
-                        <div class="col-12 col-xl-4 bg-orange-gray col-xs-12 column-3-contents p-0 sp-margin-10" style="width: calc(100% - 24px);">
+                        <div class="col-12 col-xl-4 bg-orange-gray col-xs-12 column-3-contents p-0 sp-margin-10" data-aos="fade-up" data-aos-duration="800" data-aos-delay="300" style="width: calc(100% - 24px);">
                             <div class="d-flex">
                                 <div class="container text-center our-history-title px-2">
                                     <p style="text-align: center;"><strong>農水省指定の獣医臨床研修施設で</strong><br><strong>成長できる環境</strong></p>
@@ -148,7 +148,7 @@
                                 </ul>
                             </div>
                         </div>
-                        <div class="col-12 col-xl-4 bg-orange-gray col-xs-12 column-3-contents p-0" style="width: calc(100% - 24px);">
+                        <div class="col-12 col-xl-4 bg-orange-gray col-xs-12 column-3-contents p-0" data-aos="fade-up" data-aos-duration="800" data-aos-delay="600" style="width: calc(100% - 24px);">
                             <div class="d-flex">
                                 <div class="container text-center our-history-title px-2">
                                     <p style="text-align: center;"><strong>症例数の多さで経験値を上げる</strong><br><strong>実績（2022年度）</strong></p>
@@ -168,7 +168,7 @@
                     </div>
                 </div>
             </div>
-            <div class="row" style="margin-top: 48px;margin-bottom: 48px;">
+            <div class="row blurTrigger" style="margin-top: 48px;margin-bottom: 48px;">
                 <div class="col-12 col-md-12 col-xl-11 offset-xl-0" id="section_kyuuryou">
                     <div class="margin-bottom-24"><span class="fs-0005 title-underline mb-2">総合診療科の新設</span></div>
                 </div>
@@ -176,13 +176,13 @@
                     <p>この度、当センターに総合診療科が新たに誕生します。<br>総合診療科はオールラウンドに診療することが求められます。当センターは、夜間救急、二次診療ということもあり、数多くの症例を扱うことになります。総合診療科は8つの専門診療科の専門医とチームとなり診療します。あなたがオールラウンダーとして腕を磨くための最適な場所になるでしょう。<br>また、当センターは外科専門医の指定病院です。これは獣医業界では珍しく、特殊な病院です。加えて、農林水産省より獣医臨床研修施設に指定されています。<br>あなたは、当センターで必要なスキルを磨くとともに、専門的な知識も学びながら幅広く経験を積むことができるでしょう。</p>
                 </div>
             </div>
-            <div class="row">
+            <div class="row blurTrigger">
                 <div class="col-12 col-md-12 col-xl-12 margin-bottom-24"><span class="fs-0005 title-underline text-left">確かな診断スキルと寄り添う心をはぐくむ</span></div>
                 <div class="col-md-12 col-xl-12 mx-auto font-size-18">
                     <p><span style="color: rgb(64, 64, 64);">当センターには、動物病院の先生からの紹介により、様々な症状の動物が来院します。症状はそれぞれで異なり、都度、治療方針を決めなければなりません。緊急時には即時の判断が求められます。経験を重ねることにより、確かな診断のスキルや、決断力等が養われます。<br>また、飼い主様は、二次センター、救急センターということもあり、初めて来院される方がほとんどです。なじみのない先生やペットの症状に対し、不安な気持ちを抱える飼い主様の心に寄り添いながら、最善の治療を提案する思考が磨かれます。</span></p>
                 </div>
             </div>
-            <div class="row g-0">
+            <div class="row g-0 blurTrigger">
                 <div class="col-md-12 col-xl-12 mx-auto">
                     <div class="row">
                         <div class="col-12 col-md-4 col-xl-4 col-xs-12"><img class="img-fluid image" src="../assets/img/top/TOP7.jpg"></div>
@@ -191,7 +191,7 @@
                     </div>
                 </div>
             </div>
-            <div class="row" style="margin-top: 15px;margin-bottom: 48px;">
+            <div class="row blurTrigger" style="margin-top: 15px;margin-bottom: 48px;">
                 <div class="col-md-12 col-xl-12 mx-auto font-size-18">
                     <p>DVMsで、救急診療や二次診療特有の仕事を専門医やスタッフ、かかりつけ医とチームになって働く面白さを味わってみませんか。またセミナーなどへ参加し、新しい知識を吸収するなど、私たちは論理と実践の両輪で学ぶあなたの成長を支援します。<br><br>総合診療科でスキルを磨きたい方や、動物たちや飼い主さん達のための理想の医療施設を創りたい方など、「人と動物が幸せに生きられる社会を創る」ことを私たちと一緒に目指しませんか。</p>
                 </div>
@@ -201,20 +201,20 @@
                     <div class="menu-button-component" style="overflow: hidden;color: #000;">
                         <div class="header-top-wrap">
                             <ul id="menu-component-1" class="conversion-list row" style="width: 100%;height: auto;justify-content: center;list-style: none;">
-                                <li class="has-child item-entry-menu-sp"><a id="btn-new-4" class="menu-entry-item entry-menu-item is-trigger btn-menu-control"><span>新卒採用</span></a><ul id="menu-entry-item-sub-list-first-4" class="menu-entry-item-sub-list"><li class="has-child-item entry-child-item-first-has-list menu-level-1"><a class="is-trigger"><span>獣医師</span></a><ul class="menu-entry-sub-list-item-list left-menu-item menu-level-2"><li class="is-blank"><a class="is-blank" href="page3.html" target="_blank"><span>正社員</span></a></li></ul></li><li class="has-child-item entry-child-item-second-has-list menu-level-1"><a class="is-trigger"><span>看護師</span></a><ul class="menu-entry-sub-list-item-list left-menu-item menu-level-2" style="top: 103px;"><li class="is-blank"><a class="is-blank" href="page4.html" target="_blank"><span>正社員</span></a></li></ul></li></ul></li>
-                                <li class="has-child item-entry-menu-sp"><a id="btn-careerpath-4" class="menu-entry-item entry-menu-item is-trigger btn-menu-control"><span>キャリア採用</span></a><ul id="menu-entry-item-sub-list-second-4" class="menu-entry-item-sub-list"><li class="has-child-item entry-child-item-first-has-list menu-level-1"><a class="is-trigger"><span>獣医師</span></a><ul class="menu-entry-sub-list-item-list left-menu-item menu-level-2"><li class="is-trigger"><a id="menu-level-2--item-1-1" class="is-trigger"><span>正社員</span></a><ul class="menu-level-3 menu-level-2--item-1-list"><li class="is-blank"><a class="is-blank" href="page2.html" target="_blank"><span style="text-align: center;">総合診療</span></a></li><li class="is-blank"><a class="is-blank" href="page5.html" target="_blank"><span style="text-align: center;">夜間救急診療</span></a></li><li class="is-blank"><a class="is-blank" href="page7.html" target="_blank"><span style="text-align: center;">麻酔科</span></a></li><li class="is-blank"><a class="is-blank" href="page8.html" target="_blank"><span style="text-align: center;">画像診療科</span></a></li></ul></li><li class="is-trigger"><a id="menu-level-2--item-1-1" class="is-trigger"><span>アルバイト</span></a><ul class="menu-level-3 menu-level-2--item-1-list" style="top: 50px"><li class="is-blank"><a class="is-blank" href="page6.html" target="_blank"><span style="text-align: center;">専科研修</span></a></li></ul></li></ul></li>
+                                <li data-aos="zoom-in" data-aos-duration="600" class="has-child item-entry-menu-sp"><a id="btn-new-4" class="menu-entry-item entry-menu-item is-trigger btn-menu-control"><span>新卒採用</span></a><ul id="menu-entry-item-sub-list-first-4" class="menu-entry-item-sub-list"><li class="has-child-item entry-child-item-first-has-list menu-level-1"><a class="is-trigger"><span>獣医師</span></a><ul class="menu-entry-sub-list-item-list left-menu-item menu-level-2"><li class="is-blank"><a class="is-blank" href="page3.html" target="_blank"><span>正社員</span></a></li></ul></li><li class="has-child-item entry-child-item-second-has-list menu-level-1"><a class="is-trigger"><span>看護師</span></a><ul class="menu-entry-sub-list-item-list left-menu-item menu-level-2" style="top: 103px;"><li class="is-blank"><a class="is-blank" href="page4.html" target="_blank"><span>正社員</span></a></li></ul></li></ul></li>
+                                <li data-aos="zoom-in" data-aos-duration="600" data-aos-delay="300" class="has-child item-entry-menu-sp"><a id="btn-careerpath-4" class="menu-entry-item entry-menu-item is-trigger btn-menu-control"><span>キャリア採用</span></a><ul id="menu-entry-item-sub-list-second-4" class="menu-entry-item-sub-list"><li class="has-child-item entry-child-item-first-has-list menu-level-1"><a class="is-trigger"><span>獣医師</span></a><ul class="menu-entry-sub-list-item-list left-menu-item menu-level-2"><li class="is-trigger"><a id="menu-level-2--item-1-1" class="is-trigger"><span>正社員</span></a><ul class="menu-level-3 menu-level-2--item-1-list"><li class="is-blank"><a class="is-blank" href="page2.html" target="_blank"><span style="text-align: center;">総合診療</span></a></li><li class="is-blank"><a class="is-blank" href="page5.html" target="_blank"><span style="text-align: center;">夜間救急診療</span></a></li><li class="is-blank"><a class="is-blank" href="page7.html" target="_blank"><span style="text-align: center;">麻酔科</span></a></li><li class="is-blank"><a class="is-blank" href="page8.html" target="_blank"><span style="text-align: center;">画像診療科</span></a></li></ul></li><li class="is-trigger"><a id="menu-level-2--item-1-1" class="is-trigger"><span>アルバイト</span></a><ul class="menu-level-3 menu-level-2--item-1-list" style="top: 50px;"><li class="is-blank"><a class="is-blank" href="page6.html" target="_blank"><span style="text-align: center;">専科研修</span></a></li></ul></li></ul></li></ul></li>
                             </ul>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="row text-center d-flex justify-content-center">
+            <div class="row text-center d-flex justify-content-center blurTrigger">
                 <div class="col-7 col-sm-5 col-md-4 col-lg-3 col-xl-3 col-xxl-3 img-fluid"><img id="section_mission" class="margin-bottom-24" src="../assets/img/common/our_mission.jpg" style="height: 40px;margin-bottom: 20px;"></div>
                 <div class="col-12 col-md-12">
                     <p class="fw-bold text-center font-size-20"><span style="color: rgb(0, 0, 0);">私たちの使命は、飼主とペットにとっての理想の医療施設を実現すること</span></p>
                 </div>
             </div>
-            <div class="row">
+            <div class="row blurTrigger">
                 <div class="col-12 col-md-12 col-xl-12">
                     <p class="font-size-20"><span style="color: black;">DVMsどうぶつ医療センター横浜の役割は、大きく2つ。一つは救急診療、もう一つは二次診療です。</span></p>
                 </div>
@@ -222,7 +222,7 @@
             <div class="row" style="margin-bottom: 64px;">
                 <div class="col-md-12 col-xl-12 mx-auto">
                     <div class="row row-mission">
-                        <div class="col-12 col-md-5 col-xl-5 justify-content-center bg-orange-gray col-xs-12 width-mission sp-margin-bottom-10" style="padding-bottom: 0px;margin-bottom: 0px;">
+                        <div class="col-12 col-md-5 col-xl-5 justify-content-center bg-orange-gray col-xs-12 width-mission sp-margin-bottom-10" data-aos="fade-up" data-aos-duration="800" style="padding-bottom: 0px;margin-bottom: 0px;">
                             <div class="row">
                                 <div class="col-10 col-md-10">
                                     <p class="text-center font-weight-800 font-size-20"><span style="color: rgb(0, 0, 0);">夜間救急診療センター</span><br><span style="color: rgb(0, 0, 0);">動物たちとその家族、動物医療に携わるすべての人のために</span></p>
@@ -236,7 +236,7 @@
                                 <p class="text-left mb-0 font-size-18"><span style="color: rgb(0, 0, 0);">症例数は年間5,000余り。手術は約1,000例、内視鏡は年間100例前後、心肺蘇生処置も年間100例程実施しています。内科疾患では、肺水腫、血栓塞栓症、心タンポナーデ、溶血性貧血、DKAなどを扱う機会が増えています。</span><br><span style="color: rgb(0, 0, 0);">多くの経験を経てスキルアップされたい方、新しいことに挑戦したい方など、私たちと一緒に動物たちの命の灯を守りませんか</span><br><br></p>
                             </div>
                         </div>
-                        <div class="col-12 col-md-5 col-xl-6 justify-content-center bg-orange-gray col-xs-12 width-mission">
+                        <div class="col-12 col-md-5 col-xl-6 justify-content-center bg-orange-gray col-xs-12 width-mission" data-aos="fade-up" data-aos-duration="800" data-aos-delay="300">
                             <div class="row">
                                 <div class="col-12 col-md-12 col-xl-12 justify-content-center p-0">
                                     <div class="row">
@@ -260,12 +260,12 @@
             <div class="row">
                 <div class="col-12 col-md-12 col-xl-12">
                     <div class="row text-center d-flex justify-content-center">
-                        <div class="col-7 col-sm-5 col-md-4 col-lg-3 col-xl-3 col-xxl-3 img-fluid"><img id="section_support" src="../assets/img/common/our_mission.jpg" style="height: 40px;margin-bottom: 20px;"></div>
+                        <div class="col-7 col-sm-5 col-md-4 col-lg-3 col-xl-3 col-xxl-3 img-fluid blurTrigger"><img id="section_support" src="../assets/img/common/support.jpg" style="height: 40px;margin-bottom: 20px;"></div>
                     </div>
                     <div class="row">
-                        <div class="col-12 margin-bottom-24"><span class="fs-0005 title-underline">獣医医療人としてキャリアを積む</span></div>
+                        <div class="col-12 margin-bottom-24 blurTrigger"><span class="fs-0005 title-underline">獣医医療人としてキャリアを積む</span></div>
                         <div class="col-12 pt-2 margin-bottom-24">
-                            <div class="row">
+                            <div class="row blurTrigger">
                                 <div class="col-2 col-md-1" style="max-width: 50px;"><img src="../assets/img/top/TOP12.jpg" style="width: 50px;height: 50px;"></div>
                                 <div class="col-10 col-md-11 col-xl-11 px-1" style="max-width: calc(100%-50px);">
                                     <p class="font-18 mx-0 margin-bottom-24 title-support font-size-20" style="margin-bottom: 0px;"><span style="color: black;">学術奨励金制度</span></p>
@@ -273,7 +273,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-12 margin-bottom-48">
+                        <div class="col-12 margin-bottom-48 blurTrigger">
                             <div class="row margin-bottom-24">
                                 <div class="col-2 col-md-1" style="max-width: 50px;"><img src="../assets/img/top/TOP12.jpg" style="width: 50px;height: 50px;"></div>
                                 <div class="col-10 col-md-11 col-xl-11 px-1" style="max-width: calc(100%-50px);">
@@ -284,9 +284,9 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-12 margin-bottom-24"><span class="fs-0005 title-underline">あなたが安心して働けるようサポートします</span></div>
+                        <div class="col-12 margin-bottom-24 blurTrigger"><span class="fs-0005 title-underline">あなたが安心して働けるようサポートします</span></div>
                         <div class="col-12 pt-2 margin-bottom-24">
-                            <div class="row">
+                            <div class="row blurTrigger">
                                 <div class="col-2 col-md-1" style="max-width: 50px;"><img src="../assets/img/top/TOP12.jpg" style="width: 50px;height: 50px;"></div>
                                 <div class="col-10 col-md-11 col-xl-11 px-1" style="max-width: calc(100%-50px);">
                                     <p class="font-18 mx-0 margin-bottom-24 title-support" style="margin-bottom: 0px;"><span style="color: black;">仕事とプライベートの両立</span></p>
@@ -295,7 +295,7 @@
                             </div>
                         </div>
                         <div class="col-12 margin-bottom-48">
-                            <div class="row">
+                            <div class="row blurTrigger">
                                 <div class="col-2 col-md-1" style="max-width: 50px;"><img src="../assets/img/top/TOP12.jpg" style="width: 50px;height: 50px;"></div>
                                 <div class="col-10 col-md-11 col-xl-11 px-1" style="max-width: calc(100%-50px);">
                                     <p class="font-18 mx-0 margin-bottom-24 title-support" style="margin-bottom: -1px;"><span style="color: black;">出産・子育てを応援します</span></p>
@@ -309,8 +309,8 @@
                                     <div id="menu-button-component-3" class="menu-button-component" style="overflow: hidden;color: #000;">
                                         <div class="header-top-wrap">
                                             <ul id="menu-component-2" class="conversion-list row" style="width: 100%;height: auto;justify-content: center;list-style: none;">
-                                                <li class="has-child item-entry-menu-sp"><a id="btn-new-2" class="menu-entry-item entry-menu-item is-trigger btn-menu-control"><span>新卒採用</span></a><ul id="menu-entry-item-sub-list-first-2" class="menu-entry-item-sub-list"><li class="has-child-item entry-child-item-first-has-list menu-level-1"><a class="is-trigger"><span>獣医師</span></a><ul class="menu-entry-sub-list-item-list left-menu-item menu-level-2"><li class="is-blank"><a class="is-blank" href="page3.html" target="_blank"><span>正社員</span></a></li></ul></li><li class="has-child-item entry-child-item-second-has-list menu-level-1"><a class="is-trigger"><span>看護師</span></a><ul class="menu-entry-sub-list-item-list left-menu-item menu-level-2" style="top: 103px;"><li class="is-blank"><a class="is-blank" href="page4.html" target="_blank"><span>正社員</span></a></li></ul></li></ul></li>
-                                                <li class="has-child item-entry-menu-sp"><a id="btn-careerpath-2" class="menu-entry-item entry-menu-item is-trigger btn-menu-control"><span>キャリア採用</span></a><ul id="menu-entry-item-sub-list-second-2" class="menu-entry-item-sub-list"><li class="has-child-item entry-child-item-first-has-list menu-level-1"><a class="is-trigger"><span>獣医師</span></a><ul class="menu-entry-sub-list-item-list left-menu-item menu-level-2"><li class="is-trigger"><a id="menu-level-2--item-1-4" class="is-trigger"><span>正社員</span></a><ul class="menu-level-3 menu-level-2--item-1-list"><li class="is-blank"><a class="is-blank" href="page2.html" target="_blank"><span style="text-align: center;">総合診療</span></a></li><li class="is-blank"><a class="is-blank" href="page5.html" target="_blank"><span style="text-align: center;">夜間救急診療</span></a></li><li class="is-blank"><a class="is-blank" href="page7.html" target="_blank"><span style="text-align: center;">麻酔科</span></a></li><li class="is-blank"><a class="is-blank" href="page8.html" target="_blank"><span style="text-align: center;">画像診療科</span></a></li></ul></li><li class="is-trigger"><a id="menu-level-2--item-1-4" class="is-trigger"><span>アルバイト</span></a><ul class="menu-level-3 menu-level-2--item-1-list" style="top:50px;"><li class="is-blank"><a class="is-blank" href="page6.html" target="_blank"><span style="text-align: center;">専科研修</span></a></li></ul></li>
+                                                <li data-aos="zoom-in" data-aos-duration="600" class="has-child item-entry-menu-sp"><a id="btn-new-2" class="menu-entry-item entry-menu-item is-trigger btn-menu-control"><span>新卒採用</span></a><ul id="menu-entry-item-sub-list-first-2" class="menu-entry-item-sub-list"><li class="has-child-item entry-child-item-first-has-list menu-level-1"><a class="is-trigger"><span>獣医師</span></a><ul class="menu-entry-sub-list-item-list left-menu-item menu-level-2"><li class="is-blank"><a class="is-blank" href="page3.html" target="_blank"><span>正社員</span></a></li></ul></li><li class="has-child-item entry-child-item-second-has-list menu-level-1"><a class="is-trigger"><span>看護師</span></a><ul class="menu-entry-sub-list-item-list left-menu-item menu-level-2" style="top: 103px;"><li class="is-blank"><a class="is-blank" href="page4.html" target="_blank"><span>正社員</span></a></li></ul></li></ul></li>
+                                                <li data-aos="zoom-in" data-aos-duration="600" data-aos-delay="200" class="has-child item-entry-menu-sp"><a id="btn-careerpath-2" class="menu-entry-item entry-menu-item is-trigger btn-menu-control"><span>キャリア採用</span></a><ul id="menu-entry-item-sub-list-second-2" class="menu-entry-item-sub-list"><li class="has-child-item entry-child-item-first-has-list menu-level-1"><a class="is-trigger"><span>獣医師</span></a><ul class="menu-entry-sub-list-item-list left-menu-item menu-level-2"><li class="is-trigger"><a id="menu-level-2--item-1-4" class="is-trigger"><span>正社員</span></a><ul class="menu-level-3 menu-level-2--item-1-list"><li class="is-blank"><a class="is-blank" href="page2.html" target="_blank"><span style="text-align: center;">総合診療</span></a></li><li class="is-blank"><a class="is-blank" href="page5.html" target="_blank"><span style="text-align: center;">夜間救急診療</span></a></li><li class="is-blank"><a class="is-blank" href="page7.html" target="_blank"><span style="text-align: center;">麻酔科</span></a></li><li class="is-blank"><a class="is-blank" href="page8.html" target="_blank"><span style="text-align: center;">画像診療科</span></a></li></ul></li><li class="is-trigger"><a id="menu-level-2--item-1-4" class="is-trigger"><span>アルバイト</span></a><ul class="menu-level-3 menu-level-2--item-1-list" style="top: 50px;"><li class="is-blank"><a class="is-blank" href="page6.html" target="_blank"><span style="text-align: center;">専科研修</span></a></li></ul></li></ul></li></ul></li>
                                             </ul>
                                         </div>
                                     </div>
@@ -319,19 +319,19 @@
                         </div>
                         <div class="col-12 col-md-12 col-xl-12">
                             <div class="row text-center d-flex justify-content-center" style="width: 100%;">
-                                <div class="col-7 col-sm-5 col-md-4 col-lg-3 col-xl-3 col-xxl-3 img-fluid"><img id="section_message" class="margin-bottom-48" src="../assets/img/common/message.jpg" style="height: 40px;margin-bottom: 20px;"></div>
+                                <div class="col-7 col-sm-5 col-md-4 col-lg-3 col-xl-3 col-xxl-3 img-fluid"><img id="section_message" class="margin-bottom-48 blurTrigger" src="../assets/img/common/message.jpg" style="height: 40px;margin-bottom: 20px;"></div>
                             </div>
                             <div class="row margin-bottom-48">
-                                <div class="col-12 col-md-12 col-xl-12 text-center padding-sp-15">
+                                <div class="col-12 col-md-12 col-xl-12 text-center padding-sp-15 blurTrigger">
                                     <div class="mx-auto"><img class="img-fluid" src="../assets/img/top/TOP24.jpg" width="100%"></div>
                                 </div>
                             </div>
                             <div class="row margin-bottom-24">
-                                <div class="col-12 col-md-12 col-xl-12">
+                                <div class="col-12 col-md-12 col-xl-12 blurTrigger">
                                     <p class="font-size-18"><span style="color: rgb(0, 0, 0);">DVMsどうぶつ医療センター横浜の公式採用ページをご覧いただきありがとうございます。</span><br><span style="color: rgb(0, 0, 0);">株式会社DVMs代表の吉池正喜です。</span></p>
                                 </div>
                             </div>
-                            <div class="row">
+                            <div class="row blurTrigger">
                                 <div class="col-12 col-md-12 col-xl-12 margin-bottom-24"><span class="fs-0005 title-underline"><span style="color: black;">一人の獣医師との出会いが今の私を創った</span></span></div>
                                 <div class="col">
                                     <div>
@@ -339,13 +339,13 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="row">
+                            <div class="row blurTrigger">
                                 <div class="col-12 col-md-12 col-xl-12 margin-bottom-24"><span class="fs-0005 title-underline"><span style="color: black;">私たちの信念</span></span></div>
                                 <div class="col">
                                     <p>さて、私たちの社名であるDVMsは、Dedicated Veterinary Membersの頭文字であり、動物たちや飼い主様、そして動物医療に携わるすべての方をサポートする集団という意味です。<br>小動物臨床の世界は、医療技術も含め、取り巻く環境はめまぐるしく変化しています。このため、私たち動物医療従事者には、常に変革が求められています。DVMsの歴史にもあるとおり、2000年代はじめには、横浜市内に深夜早朝に開院している施設はありませんでした。具合の悪い動物達と一緒に一夜を過ごす飼い主様の不安感は計り知れません。深夜早朝でも動物を連れていける場所として、私たちは「横浜夜間動物病院」を立ち上げました。</p>
                                 </div>
                             </div>
-                            <div class="row">
+                            <div class="row blurTrigger">
                                 <div class="col margin-bottom-24"><span class="fs-0005 title-underline"><span style="color: black;">一流の獣医療人チームでニーズに応える</span></span></div>
                                 <div class="col-12 col-md-12 col-xl-12">
                                     <div class="row margin-bottom-48">
@@ -363,8 +363,8 @@
                                                     <div class="menu-button-component" style="overflow: hidden;color: #000;">
                                                         <div class="header-top-wrap">
                                                             <ul id="menu-component-3" class="conversion-list row" style="width: 100%;height: auto;justify-content: center;list-style: none;">
-                                                                <li class="has-child item-entry-menu-sp"><a id="btn-new-3" class="menu-entry-item entry-menu-item is-trigger btn-menu-control"><span>新卒採用</span></a><ul id="menu-entry-item-sub-list-first-3" class="menu-entry-item-sub-list"><li class="has-child-item entry-child-item-first-has-list menu-level-1"><a class="is-trigger"><span>獣医師</span></a><ul class="menu-entry-sub-list-item-list left-menu-item menu-level-2"><li class="is-blank"><a class="is-blank" href="page3.html" target="_blank"><span>正社員</span></a></li></ul></li><li class="has-child-item entry-child-item-second-has-list menu-level-1"><a class="is-trigger"><span>看護師</span></a><ul class="menu-entry-sub-list-item-list left-menu-item menu-level-2" style="top: 103px;"><li class="is-blank"><a class="is-blank" href="page4.html" target="_blank"><span>正社員</span></a></li></ul></li></ul></li>
-                                                                <li class="has-child item-entry-menu-sp"><a id="btn-careerpath-3" class="menu-entry-item entry-menu-item is-trigger btn-menu-control"><span>キャリア採用</span></a><ul id="menu-entry-item-sub-list-second-3" class="menu-entry-item-sub-list"><li class="has-child-item entry-child-item-first-has-list menu-level-1"><a class="is-trigger"><span>獣医師</span></a><ul class="menu-entry-sub-list-item-list left-menu-item menu-level-2"><li class="is-trigger"><a id="menu-level-2--item-1-2" class="is-trigger"><span>正社員</span></a><ul class="menu-level-3 menu-level-2--item-1-list"><li class="is-blank"><a class="is-blank" href="page2.html" target="_blank"><span style="text-align: center;">総合診療</span></a></li><li class="is-blank"><a class="is-blank" href="page5.html" target="_blank"><span style="text-align: center;">夜間救急診療</span></a></li><li class="is-blank"><a class="is-blank" href="page7.html" target="_blank"><span style="text-align: center;">麻酔科</span></a></li><li class="is-blank"><a class="is-blank" href="page8.html" target="_blank"><span style="text-align: center;">画像診療科</span></a></li></ul></li><li class="is-trigger"><a id="menu-level-2--item-1-2" class="is-trigger"><span>アルバイト</span></a><ul class="menu-level-3 menu-level-2--item-1-list" style="top:50px;"><li class="is-blank"><a class="is-blank" href="page6.html" target="_blank"><span style="text-align: center;">専科研修</span></a></li></ul></li>
+                                                                <li data-aos="zoom-in" data-aos-duration="600" class="has-child item-entry-menu-sp"><a id="btn-new-3" class="menu-entry-item entry-menu-item is-trigger btn-menu-control"><span>新卒採用</span></a><ul id="menu-entry-item-sub-list-first-3" class="menu-entry-item-sub-list"><li class="has-child-item entry-child-item-first-has-list menu-level-1"><a class="is-trigger"><span>獣医師</span></a><ul class="menu-entry-sub-list-item-list left-menu-item menu-level-2"><li class="is-blank"><a class="is-blank" href="page3.html" target="_blank"><span>正社員</span></a></li></ul></li><li class="has-child-item entry-child-item-second-has-list menu-level-1"><a class="is-trigger"><span>看護師</span></a><ul class="menu-entry-sub-list-item-list left-menu-item menu-level-2" style="top: 103px;"><li class="is-blank"><a class="is-blank" href="page4.html" target="_blank"><span>正社員</span></a></li></ul></li></ul></li>
+                                                                <li data-aos="zoom-in" data-aos-duration="600" data-aos-delay="200" class="has-child item-entry-menu-sp"><a id="btn-careerpath-3" class="menu-entry-item entry-menu-item is-trigger btn-menu-control"><span>キャリア採用</span></a><ul id="menu-entry-item-sub-list-second-3" class="menu-entry-item-sub-list"><li class="has-child-item entry-child-item-first-has-list menu-level-1"><a class="is-trigger"><span>獣医師</span></a><ul class="menu-entry-sub-list-item-list left-menu-item menu-level-2"><li class="is-trigger"><a id="menu-level-2--item-1-2" class="is-trigger"><span>正社員</span></a><ul class="menu-level-3 menu-level-2--item-1-list"><li class="is-blank"><a class="is-blank" href="page2.html" target="_blank"><span style="text-align: center;">総合診療</span></a></li><li class="is-blank"><a class="is-blank" href="page5.html" target="_blank"><span style="text-align: center;">夜間救急診療</span></a></li><li class="is-blank"><a class="is-blank" href="page7.html" target="_blank"><span style="text-align: center;">麻酔科</span></a></li><li class="is-blank"><a class="is-blank" href="page8.html" target="_blank"><span style="text-align: center;">画像診療科</span></a></li></ul></li><li class="is-trigger"><a id="menu-level-2--item-1-2" class="is-trigger"><span>アルバイト</span></a><ul class="menu-level-3 menu-level-2--item-1-list" style="top: 50px;"><li class="is-blank"><a class="is-blank" href="page6.html" target="_blank"><span style="text-align: center;">専科研修</span></a></li></ul></li></ul></li></ul></li>
                                                             </ul>
                                                         </div>
                                                     </div>
@@ -409,8 +409,10 @@
         </div><button class="btn btn-primary btn_go_to_top" id="btn_go_to_top" type="button"><img class="img-fluid" src="../assets/img/top/TOP17.jpg" width="80px" height="80px"></button>
     </footer>
     <script src="../assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="../assets/js/aos.min.js"></script>
     <script src="../assets/js/bs-init.js"></script>
     <script src="../assets/js/jquery-3.6.4.min.js"></script>
+    <script src="../assets/js/jquery.validate.min.js"></script>
     <script src="../assets/js/menu.js"></script>
     <script src="../assets/js/animation.js"></script>
     <script src="../assets/js/form_submit.js"></script>

@@ -30,12 +30,10 @@ $(document).ready(function () {
             console.log('30');
             btnSend.attr('disabled', false);            
          } else {
-            var html = '<p>エラーが発生しました。</p><p>以下の必須項目を確認して入力してください。</p>';
-            html += '<ul>';
-            $.each(check_form[1], function(v) {        
-               html += '<li>'+ v +'は必須です。</li>';
+            var html = '';
+            $.each(check_form[1], function(k, v) {        
+               html += '<p>'+ v +'は必須です。</p>';
             })
-            html += '</ul>';
             $('#confirm_modal #content_confirm').html(html);
             $('#confirm_modal').modal('show');
             btnSend.attr('disabled', true);

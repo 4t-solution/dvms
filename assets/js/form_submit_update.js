@@ -60,7 +60,8 @@ $(document).ready(function () {
       'addr_b': '市区町村',
       'addr_c': '建物名',
       'school': '学校・学部・学科',
-      'graduation_year': '卒業（予定）年'
+      'graduation_year': '卒業（予定）年',
+      'channel': '当院を知ったきっかけ'
    };
 
    return arr[id];

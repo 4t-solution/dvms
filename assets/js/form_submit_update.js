@@ -1,14 +1,35 @@
 const chboxSend = $('#chboxSend');
 const btnSend = $('#btnSend');
+const arr_required = {
+   'family_name': '漢字姓',
+   'given_name': '漢字名',
+   'family_name_k': 'カナ姓',
+   'given_name_k': 'カナ姓名',
+   'birth_year': '生年月日',
+   'birth_month': '生年月日',
+   'birth_day': '生年月日',
+   'gender_id': '性別',
+   'tel': '電話番号',
+   'mail': 'E-mail',
+   'mail_confirm': 'E-mail確認用',
+   'zip_a': '郵便番号',
+   'zip_b': '郵便番号',
+   'pref_id': '都道府県',
+   'addr_a': '市区町村',
+   'addr_b': '番地',
+   'addr_c': '建物名',
+   'school': '学校・学部・学科',
+   'graduation_year': '卒業（予定）年',
+   'channel': '当院を知ったきっかけ'
+};
 $(document).ready(function () {
-   // count view page
-   tracking_view(true);
-
    $('#inputForm .form-control, .form-check-input').on('input', function () {
       if($(this).attr('name') != 'zip_a' || $(this).attr('name') != 'zip_b') {
          validate_update(this);
       }
    })
+
+   btnSend.attr('disabled', true);
 
    $('#inputForm .form-check-input').on('click', function () {
       validate_update(this);
@@ -20,50 +41,55 @@ $(document).ready(function () {
    })
 
     $('#btnSend').click(function () {
-      // disable button
-      $(this).prop("disabled", true);     
-      
-      let check_form = parseJson();
-      if (check_form[1].length == 0) {
-         // add spinner to button
-         $(this).html(
-            `<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> 送信中...`
-         );
-      } else {
-         submitForm();
-      }
+      // disable button      
+      $(this).html(
+         `<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> 送信中...`
+      );
+      submitForm();
     })
- 
-   $('.menu-control--btn-entry').click(function () {
-      tracking_view(false, true);
-   })
+
+   /**
+    * change checkbox
+    */
+   chboxSend.on('change', function () {
+      if (this.checked) {
+         $('.alert-danger').remove();
+         let input_arr = Object.keys(arr_required);
+         input_arr.every(function(obj_name, index) {
+            let message = validate_input(obj_name);
+            if(message) {
+               var html = '<div class="alert alert-danger" role="alert">';
+               html += '<p class="text-center">'+message+'</p>';
+               html += '</div>';
+               $(html).insertAfter($('input[name="'+obj_name+'"]').parents('.row.d-flex'));
+               btnSend.attr('disabled', true);
+               return false
+            } else {            
+               btnSend.attr('disabled', false);
+            }
+            return true;
+         })
+         // $(input_arr).each(function(k, obj_name) {
+         //    let message = validate_input(obj_name);
+         //    if(message) {
+         //       var html = '<div class="alert alert-danger" role="alert">';
+         //       html += '<p class="text-center">'+message+'</p>';
+         //       html += '</div>';
+         //       $(html).insertAfter($('input[name="'+obj_name+'"]').parents('.row.d-flex'));
+         //       chboxSend.prop('checked', false);
+         //       btnSend.attr('disabled', true);
+         //    } else {            
+         //       btnSend.attr('disabled', false);
+         //    }            
+         // })
+      } else {
+         btnSend.attr('disabled', true);
+      }
+   });
  });
  
  function getNameLabelInput(id) {
-   const arr = {
-      'family_name': '漢字姓',
-      'given_name': '漢字名',
-      'family_name_k': 'カナ姓',
-      'given_name_k': 'カナ姓名',
-      'birth_year': '生年月日',
-      'birth_month': '生年月日',
-      'birth_day': '生年月日',
-      'gender_id': '性別',
-      'tel': '電話番号',
-      'mail': 'E-mail',
-      'mail_confirm': 'E-mail確認用',
-      'zip_a': '郵便番号',
-      'zip_b': '郵便番号',
-      'pref_id': '都道府県',
-      'addr_a': '市区町村',
-      'addr_b': '番地',
-      'addr_c': '建物名',
-      'school': '学校・学部・学科',
-      'graduation_year': '卒業（予定）年',
-      'channel': '当院を知ったきっかけ'
-   };
-
-   return arr[id];
+   return arr_required[id];
  }
  
 function reset_btn_submit() {
@@ -87,34 +113,6 @@ function tracking_view(is_load = false, click_entry = false) {
          console.log('tracking api error');
       },
    })
-}
-
-function validate_form_update() {
-   $('.alert-danger').remove();
-   this.reset_btn_submit();
-   let check_form = parseJson();
-
-   // check required
-   if (check_form[1].length == 0) {
-      btnSend.attr('disabled', false);            
-   } else {
-      $('.alert-danger').remove();
-      $('.border-error-input').removeClass('border-error-input');
-      var html = '<div class="alert alert-danger" role="alert">';
-   
-      let elm = $('input[name="'+check_form[1][0]+'"]');
-      if(!check_tel) {
-         html += 'TELは半角数値のみ入力してください。';
-      } else {
-         html += getNameLabelInput(check_form[1][0]) +'は必須です';
-         elm.addClass('border-error-input');
-      }
-      html += '</div>';
-      
-      $(html).insertAfter(elm.parents('.row.d-flex'));
-      chboxSend.prop('checked', false);
-      btnSend.attr('disabled', true);   
-   }
 }
 
  /**
@@ -267,14 +265,15 @@ function check_data(data, type_check, label_name) {
 }
 
 function validate_update(elm) {
+   chboxSend.prop('checked', false);
+   btnSend.attr('disabled', true);
    $('.alert-danger').remove();
    let message = validate_input($(elm).attr('name'));
    if(message) {
       var html = '<div class="alert alert-danger" role="alert">';
       html += '<p class="text-center">'+message+'</p>';
       html += '</div>';
-      $(html).insertAfter($(elm).parents('.row.d-flex'));
-      chboxSend.prop('checked', false);
+      $(html).insertAfter($(elm).parents('.row.d-flex'));      
       btnSend.attr('disabled', true);
    } else {            
       btnSend.attr('disabled', false);

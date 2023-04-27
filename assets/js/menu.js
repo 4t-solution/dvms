@@ -26,10 +26,18 @@ $('.menu-control--btn button').click(function () {
  * メニューをクリックすると、該当の場所へ移動します。
  * クリックしたらメニューは折りたたむ。
  */
+// $('.menu-of-menu-hambuger').click(function () {
+//     if($(this).hasClass('is-open')) {
+//         $(this).removeClass('is-open')
+//         $('.menu-control--btn-menu').removeClass('is-open')
+//     }
+// })
+
 $('.menu-of-menu-hambuger').click(function () {
     if($(this).hasClass('is-open')) {
         $(this).removeClass('is-open')
-        $('.menu-control--btn-menu').removeClass('is-open')
+        $('.openbtn5').removeClass('is-open')
+        $('.openbtn5').toggleClass('active')
     }
 })
 

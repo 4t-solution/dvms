@@ -1,14 +1,73 @@
-/* ==================================================　5-2-5 MENUが☓に=================================== */
+/* ==================================================
+　5-2-5 MENUが☓に
+=================================== */
 
 /* ボタン外側※レイアウトによってpositionや形状は適宜変更してください */
 
-.openbtn5 {
-  position: relative;
-  background: #666;
-  cursor: pointer;
-  width: 50px;
-  height: 50px;
-  border-radius: 5px;
+@media (min-width: 1400px) {
+  .openbtn5 {
+    position: relative;
+    background: #ffffff !important;
+    cursor: pointer;
+    width: 100px !important;
+    height: 75px !important;
+    border-radius: 5px !important;
+  }
+}
+
+@media (min-width: 1200px) {
+  .openbtn5 {
+    position: relative;
+    background: #ffffff !important;
+    cursor: pointer;
+    width: 100px !important;
+    height: 75px !important;
+    border-radius: 5px !important;
+  }
+}
+
+@media (min-width: 992px) {
+  .openbtn5 {
+    position: relative;
+    background: #ffffff !important;
+    cursor: pointer;
+    width: 100px !important;
+    height: 75px !important;
+    border-radius: 5px !important;
+  }
+}
+
+@media (min-width: 768px) {
+  .openbtn5 {
+    position: relative;
+    background: #ffffff !important;
+    cursor: pointer;
+    width: 100px !important;
+    height: 75px !important;
+    border-radius: 5px !important;
+  }
+}
+
+@media (min-width: 576px) {
+  .openbtn5 {
+    position: relative;
+    background: #ffffff !important;
+    cursor: pointer;
+    width: 50px;
+    height: 45px;
+    border-radius: 5px !important;
+  }
+}
+
+@media (min-width: 300px) {
+  .openbtn5 {
+    position: relative;
+    background: #ffffff !important;
+    cursor: pointer;
+    width: 50px;
+    height: 45px;
+    border-radius: 5px !important;
+  }
 }
 
 /* ボタン内側 */
@@ -19,36 +78,129 @@
   position: absolute;
 }
 
-.openbtn5 span:nth-of-type(1), .openbtn5 span:nth-of-type(3) {
-  height: 2px;
-  background: #fff;
-  width: 62%;
-  left: 10px;
+@media (min-width: 768px) {
+  .openbtn5 span:nth-of-type(1), .openbtn5 span:nth-of-type(3) {
+    height: 4px !important;
+    background: #000000;
+    width: 60%;
+    left: 20%;
+  }
+}
+
+@media (min-width: 576px) {
+  .openbtn5 span:nth-of-type(1), .openbtn5 span:nth-of-type(3) {
+    height: 2px;
+    background: #000000;
+    width: 60%;
+    left: 20%;
+  }
+}
+
+@media (max-width: 400px) {
+  .openbtn5 span:nth-of-type(1), .openbtn5 span:nth-of-type(3) {
+    height: 2px;
+    background: #000000;
+    width: 60%;
+    left: 20%;
+  }
 }
 
 .openbtn5 span:nth-of-type(1) {
-  top: 13px;
+  top: 15px;
 }
 
-.openbtn5 span:nth-of-type(2) {
-  top: 19px;
-  left: 11px;
-  font-size: 0.6rem;
-  text-transform: uppercase;
-  color: #fff;
+#btn-menu {
 }
 
-.openbtn5 span:nth-of-type(3) {
-  top: 36px;
+@media (min-width: 992px) {
+  .openbtn5 span:nth-of-type(2) {
+    top: 25px !important;
+    left: 18.2% !important;
+    font-size: 1.2rem !important;
+    text-transform: uppercase !important;
+    color: #000000 !important;
+    font-weight: 700 !important;
+  }
+}
+
+@media (min-width: 768px) {
+  .openbtn5 span:nth-of-type(2) {
+    top: 25px !important;
+    left: 18.2% !important;
+    font-size: 1.2rem !important;
+    text-transform: uppercase !important;
+    color: #000000 !important;
+    font-weight: 700 !important;
+  }
+}
+
+@media (min-width: 576px) {
+  .openbtn5 span:nth-of-type(2) {
+    top: 20px;
+    left: 18.2%;
+    font-size: 0.6rem;
+    text-transform: uppercase;
+    color: #000000;
+    font-weight: 700;
+  }
+}
+
+@media (max-width: 400px) {
+  .openbtn5 span:nth-of-type(2) {
+    top: 20px;
+    left: 18.2%;
+    font-size: 0.6rem;
+    text-transform: uppercase;
+    color: #000000;
+    font-weight: 700;
+  }
+}
+
+@media (min-width: 768px) {
+  .openbtn5 span:nth-of-type(3) {
+    top: 55px !important;
+  }
+}
+
+@media (min-width: 576px) {
+  .openbtn5 span:nth-of-type(3) {
+    top: 35px;
+  }
+}
+
+@media (max-width: 400px) {
+  .openbtn5 span:nth-of-type(3) {
+    top: 35px;
+  }
 }
 
 /* activeクラスが付与されると線が回転して×になり、Menu表記をしている2つ目の要素が透過して消える */
 
-.openbtn5.active span:nth-of-type(1) {
-  top: 18px;
-  left: 18px;
-  transform: translateY(6px) rotate(-45deg);
-  width: 30%;
+@media (min-width: 768px) {
+  .openbtn5.active span:nth-of-type(1) {
+    top: 40% !important;
+    left: 20% !important;
+    transform: translateY(6px) rotate(-45deg);
+    width: 60%;
+  }
+}
+
+@media (min-width: 576px) {
+  .openbtn5.active span:nth-of-type(1) {
+    top: 30%;
+    left: 20%;
+    transform: translateY(6px) rotate(-45deg);
+    width: 60%;
+  }
+}
+
+@media (max-width: 576px) {
+  .openbtn5.active span:nth-of-type(1) {
+    top: 30%;
+    left: 20%;
+    transform: translateY(6px) rotate(-45deg);
+    width: 60%;
+  }
 }
 
 .openbtn5.active span:nth-of-type(2) {
@@ -56,10 +208,10 @@
 }
 
 .openbtn5.active span:nth-of-type(3) {
-  top: 30px;
-  left: 18px;
+  top: 55% !important;
+  left: 22%;
   transform: translateY(-6px) rotate(45deg);
-  width: 30%;
+  width: 60%;
 }
 
 /* ========= レイアウトのためのCSS =============== */
@@ -85,7 +237,9 @@ a {
 
 /* ========= レイアウトのためのCSS =============== */
 
-/* ==================================================じわっ=================================== */
+/* ==================================================
+じわっ
+=================================== */
 
 .blur {
   animation-name: blurAnime;
@@ -126,13 +280,17 @@ a {
   box-sizing: border-box;
 }
 
-/* ==================================================スタート時は要素自体を透過0にするためのopacity:0;を指定する=================================== */
+/* ==================================================
+スタート時は要素自体を透過0にするためのopacity:0;を指定する
+=================================== */
 
 .box {
   opacity: 0;
 }
 
-/* ==================================================ふわっ=================================== */
+/* ==================================================
+ふわっ
+=================================== */
 
 .fadeUp {
   animation-name: fadeUpAnime;

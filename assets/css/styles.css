@@ -578,3 +578,6 @@ textarea:focus {
 .fs-0007.title-underline {
 }
 
+.border-error-input {
+    border: 1px solid red;
+}

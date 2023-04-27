@@ -89,14 +89,54 @@ function tracking_view(is_load = false, click_entry = false) {
    })
 }
 
-function validate_form_update() {   
+function check_data(data, type_check, label_name) {
+   let message = '';
+   switch (type_check) {
+      case 'regex_zen_kaku':
+         // 番地、名称は全角のみ
+         const regex_zen_kaku = '/^[^\x01-\x7E\uFF61-\uFF9F]+$/';
+         if(!regex_zen_kaku.test(data)) {
+            message = label_name + 'は全角のみ入力してください。';
+         };
+         break;
+      case 'regex_only_number':
+         // TELは半角数値のみ
+         const regex_only_number = '/^[0-9]*$/';
+         if(!regex_only_number.test(data)) {
+            message = label_name + 'は半角数値のみ入力してください。';
+         };
+         break;
+      case 'regex_post_code':
+         // バリデーション入れる　xxx-xxxxのままでは警告を表示
+         const regex_post_code = '/^[0-9]{3}-?[0-9]{4}$/';
+         if(!regex_post_code.test(data)) {
+            message = label_name + 'は半角数値のみ入力してください。';
+         };
+         break;
+      case 'regex_mail':
+         // メールはメールフォーマットのみ
+         const regex_mail = '/^[a-zA-Z0-9_.+-]+@([a-zA-Z0-9][a-zA-Z0-9-]*[a-zA-Z0-9]*\.)+[a-zA-Z]{2,}$/';
+         if(!regex_mail.test(data)) {
+            message = label_name + 'は半角数値のみ入力してください。';
+         };
+         break;
+      case 'required':
+         if(!data) {
+            message = label_name + 'は必須です。';
+         };
+         break;
+      default:
+         break;
+   }
+   return message;
+}
+
+function validate_form_update() {
    $('.alert-danger').remove();
    this.reset_btn_submit();
    let check_form = parseJson();
-   var numberRegex = /^\d+$/;
-   if(!numberRegex.test(check_form[0]['tel'])) {
-      check_form[1].push('tel');
-   };
+
+   // check required
    if (check_form[1].length == 0) {
       btnSend.attr('disabled', false);            
    } else {
@@ -105,7 +145,7 @@ function validate_form_update() {
       var html = '<div class="alert alert-danger" role="alert">';
    
       let elm = $('input[name="'+check_form[1][0]+'"]');
-      if(check_form[1][0] == 'tel' && check_form[0]['tel']) {
+      if(!check_tel) {
          html += 'TELは半角数値のみ入力してください。';
       } else {
          html += getNameLabelInput(check_form[1][0]) +'は必須です';

@@ -1,51 +1,37 @@
 const chboxSend = $('#chboxSend');
 const btnSend = $('#btnSend');
 $(document).ready(function () {
+   chboxSend.attr('disabled', false);
    // count view page
    tracking_view(true);
 
    btnSend.attr('disabled', true);
-   chboxSend.attr('disabled', true);
 
    $('#inputForm .form-control, .form-check-input').on('keyup', function () {
-      validate_form();
+      reset_btn_submit();
    })
 
    $('#inputForm .form-check-input').on('click', function () {
-      validate_form();
+      reset_btn_submit();
    })
 
    
    $('input[type="date"], input[type="month"]').on('change', function () {
-      validate_form();
+      reset_btn_submit();
    })
 
    /**
     * change checkbox
     */
    chboxSend.on('change', function () {
-      let check_form = parseJson();
       if (this.checked) {
-         var numberRegex = /^\d+$/;
-         if(!numberRegex.test(check_form[0]['tel'])) {
-            check_form[1].push('tel');
-         };
-
-         if (check_form[1].length == 0 && (check_form[0]['mail'] == check_form[0]['mail_confirm'])) {
-            btnSend.attr('disabled', false);            
-         } else {
-            $('.alert-danger').remove();
+         $('.alert-danger').remove();
+         let message = validate_input();
+         if(message) {
             var html = '<div class="alert alert-danger" role="alert">';
-            if(check_form[1][0] == 'tel' && check_form[0]['tel']) {
-               html += '<p class="text-center">TELは半角数値のみ入力してください。</p>';
-            } else if(check_form[0]['mail'] != check_form[0]['mail_confirm']) {
-               html += '<p class="text-center">E-mail確認用とE-mailが一致しません。</p>';
-            } else {
-               html += '<p class="text-center">'+ getNameLabelInput(check_form[1][0]) +'は必須です。</p>';
-            }
+            html += '<p class="text-center">'+message+'</p>';
             html += '</div>';
-            
-            $(html).insertBefore(btnSend);
+            $(html).insertBefore(btnSend.parent());
             btnSend.attr('disabled', true);
             chboxSend.prop('checked', false);
          }
@@ -74,6 +60,57 @@ $(document).ready(function () {
       tracking_view(false, true);
    })
  });
+
+ 
+
+function check_data(data, type_check, label_name) {
+   let message = '';
+   switch (type_check) {
+      case 'regex_zen_kaku':
+         // 番地、名称は全角のみ
+         const regex_zen_kaku = /^[^\x01-\x7E\uFF61-\uFF9F]+$/;
+         if(!data.match(regex_zen_kaku)) {
+            message = label_name + 'は全角のみ入力してください。';
+         };
+         break;
+      case 'regex_katakana':
+         // バリデーションを入れてください。
+         const regex_katakana = /^[ァ-ヶー　、。]*$/;
+         if(!data.match(regex_katakana)) {
+            message = label_name + 'は全角カナのみ入力してください。';
+         };
+         break;
+      case 'regex_only_number':
+         // TELは半角数値のみ
+         const regex_only_number = /^[0-9]*$/;
+         if(!data.match(regex_only_number)) {
+            message = label_name + 'は半角数値のみ入力してください。';
+         };
+         break;
+      case 'regex_post_code':
+         // バリデーション入れる　xxx-xxxxのままでは警告を表示
+         const regex_post_code = /^[0-9]{3}-?[0-9]{4}$/;
+         if(!data.match(regexregex_post_code_zen_kaku)) {
+            message = label_name + 'は半角数値のみ入力してください。';
+         };
+         break;
+      case 'regex_mail':
+         // メールはメールフォーマットのみ
+         const regex_mail = /^[a-zA-Z0-9_.+-]+@([a-zA-Z0-9][a-zA-Z0-9-]*[a-zA-Z0-9]*\.)+[a-zA-Z]{2,}$/;
+         if(!data.match(regex_mail)) {
+            message = label_name + 'はメールフォーマットのみ入力してください。';
+         };
+         break;
+      case 'required':
+         if(!data) {
+            message = label_name + 'は必須です。';
+         };
+         break;
+      default:
+         break;
+   }
+   return message;
+}
  
  function getNameLabelInput(id) {
    const arr = {
@@ -81,20 +118,20 @@ $(document).ready(function () {
       'given_name': '漢字名',
       'family_name_k': 'カナ姓',
       'given_name_k': 'カナ姓名',
-      'birth_year': '生年月日',
-      'birth_month': '生年月日',
-      'birth_day': '生年月日',
+      'birth_year': '生年',
+      'birth_month': '生月',
+      'birth_day': '生日',
       'gender_id': '性別',
       'tel': '電話番号',
       'mail': 'E-mail',
       'mail_confirm': 'E-mail確認用',
    };
 
-   return arr[id];
+   return arr[id] ? arr[id] : false;
  }
  
 function reset_btn_submit() {
-   chboxSend.attr('disabled', true);
+   chboxSend.prop('checked', false);
    btnSend.attr('disabled', true);
 }
 
@@ -115,22 +152,6 @@ function tracking_view(is_load = false, click_entry = false) {
          console.log('tracking api error');
       },
    })
-}
-
-function validate_form() {   
-   $('.alert-danger').remove();
-   this.reset_btn_submit();
-   let check_form = parseJson();
-   console.log(check_form[1]);
-   if (check_form[1].length == 0) {
-      chboxSend.attr('disabled', false);
-      if($('#chboxSend').is(':checked')) {
-         btnSend.attr('disabled', false);
-      }      
-   } else {
-      chboxSend.attr('disabled', true);
-      btnSend.attr('disabled', true);
-   }
 }
 
  /**
@@ -198,22 +219,267 @@ function parseJson() {
       "tour_preferred_date", 
       "applicant_question",
    ];
+
    let data = $('#inputForm').serializeArray();
    var error = [];
-    var returnJson = {};
-    for (idx = 0; idx < data.length; idx++) {
+   var returnJson = {};
+   for (idx = 0; idx < data.length; idx++) {
       if (returnJson[data[idx].name]) {
          returnJson[data[idx].name] += ',' + data[idx].value;
       } else {
          returnJson[data[idx].name] = data[idx].value;
-    }
+      }
       
+      // check data
       if (!data[idx].value) {
          if($.inArray(data[idx].name, arr_validate_not_required) == -1 &&
-          $.inArray(data[idx].name, error) == -1) {
-            error.push(data[idx].name);
+            $.inArray(data[idx].name, error) == -1) {
+            let input_val = data[idx].value;
+            let label_name = getNameLabelInput(data[idx].name);
+            let type_check = 'required';
+            let message = check_data(input_val, type_check, label_name);
+            if(message) {
+               error.push(message);
+            }
+            type_check = getTypeCheckByName(data[idx].name);
+            message = check_data(input_val, type_check, label_name);
+            if(message) {
+               error.push(message);
+            }
          }
       }
    }
    return [returnJson, error];
+  }
+
+  function validate_input() {
+   $('.border-error-input').removeClass('border-error-input');
+   let data_form = parseJson()[0];
+   let input_val = data_form['family_name'];
+   let type_check = 'required';
+   let label_name = getNameLabelInput('family_name');
+   if(check_data(input_val, type_check, label_name)) {
+      let elm = $('input[name="family_name"]');
+      elm.addClass('border-error-input');
+      return check_data(input_val, type_check, label_name);
+   }
+
+   input_val = data_form['family_name'];
+   type_check = 'regex_zen_kaku';
+   label_name = getNameLabelInput('family_name');
+   if(check_data(input_val, type_check, label_name)) {
+      let elm = $('input[name="family_name"]');
+      elm.addClass('border-error-input');
+      return check_data(input_val, type_check, label_name);
+   }
+
+   input_val = data_form['given_name'];
+   type_check = 'required';
+   label_name = getNameLabelInput('given_name');
+   if(check_data(input_val, type_check, label_name)) {
+      let elm = $('input[name="given_name"]');
+      elm.addClass('border-error-input');
+      return check_data(input_val, type_check, label_name);
+   }
+
+   input_val = data_form['given_name'];
+   type_check = 'regex_zen_kaku';
+   label_name = getNameLabelInput('given_name');
+   if(check_data(input_val, type_check, label_name)) {
+      let elm = $('input[name="given_name"]');
+      elm.addClass('border-error-input');
+      return check_data(input_val, type_check, label_name);
+   }
+
+   input_val = data_form['family_name_k'];
+   type_check = 'required';
+   label_name = getNameLabelInput('family_name_k');
+   if(check_data(input_val, type_check, label_name)) {
+      let elm = $('input[name="family_name_k"]');
+      elm.addClass('border-error-input');
+      return check_data(input_val, type_check, label_name);
+   }
+
+   input_val = data_form['family_name_k'];
+   type_check = 'regex_katakana';
+   label_name = getNameLabelInput('family_name_k');
+   if(check_data(input_val, type_check, label_name)) {
+      let elm = $('input[name="family_name_k"]');
+      elm.addClass('border-error-input');
+      return check_data(input_val, type_check, label_name);
+   }
+
+   input_val = data_form['given_name_k'];
+   type_check = 'required';
+   label_name = getNameLabelInput('given_name_k');
+   if(check_data(input_val, type_check, label_name)) {
+      let elm = $('input[name="given_name_k"]');
+      elm.addClass('border-error-input');
+      return check_data(input_val, type_check, label_name);
+   }
+
+   input_val = data_form['given_name_k'];
+   type_check = 'regex_katakana';
+   label_name = getNameLabelInput('given_name_k');
+   if(check_data(input_val, type_check, label_name)) {
+      let elm = $('input[name="given_name_k"]');
+      elm.addClass('border-error-input');
+      return check_data(input_val, type_check, label_name);
+   }   
+
+   input_val = data_form['birth_year'];
+   type_check = 'required';
+   label_name = getNameLabelInput('birth_year');
+   if(check_data(input_val, type_check, label_name)) {
+      return check_data(input_val, type_check, label_name);
+   }
+
+   input_val = data_form['birth_year'];
+   type_check = 'regex_only_number';
+   label_name = getNameLabelInput('birth_year');
+   console.log(check_data(input_val, type_check, label_name));
+   if(check_data(input_val, type_check, label_name)) {
+      return check_data(input_val, type_check, label_name);
+   }
+
+   input_val = data_form['birth_month'];
+   type_check = 'required';
+   label_name = getNameLabelInput('birth_month');
+   if(check_data(input_val, type_check, label_name)) {
+      return check_data(input_val, type_check, label_name);
+   }
+
+   input_val = data_form['birth_month'];
+   type_check = 'regex_only_number';
+   label_name = getNameLabelInput('birth_month');
+   if(check_data(input_val, type_check, label_name)) {
+      return check_data(input_val, type_check, label_name);
+   }
+
+   input_val = data_form['birth_day'];
+   type_check = 'required';
+   label_name = getNameLabelInput('birth_day');
+   if(check_data(input_val, type_check, label_name)) {
+      return check_data(input_val, type_check, label_name);
+   }
+
+   input_val = data_form['birth_day'];
+   type_check = 'regex_only_number';
+   label_name = getNameLabelInput('birth_day');
+   if(check_data(input_val, type_check, label_name)) {
+      return check_data(input_val, type_check, label_name);
+   }
+
+   input_val = data_form['gender_id'];
+   type_check = 'required';
+   label_name = getNameLabelInput('gender_id');
+   if(!$('input[name="gender_id"]').is(':checked')) {
+      return check_data(input_val, type_check, label_name);
+   }
+
+   input_val = data_form['tel'];
+   type_check = 'required';
+   label_name = getNameLabelInput('tel');
+   if(check_data(input_val, type_check, label_name)) {
+      let elm = $('input[name="tel"]');
+      elm.addClass('border-error-input');
+      return check_data(input_val, type_check, label_name);
+   }
+
+   input_val = data_form['tel'];
+   type_check = 'regex_only_number';
+   label_name = getNameLabelInput('tel');
+   if(check_data(input_val, type_check, label_name)) {
+      let elm = $('input[name="tel"]');
+      elm.addClass('border-error-input');
+      return check_data(input_val, type_check, label_name);
+   }
+
+   input_val = data_form['mail'];
+   type_check = 'required';
+   label_name = getNameLabelInput('mail');
+   if(check_data(input_val, type_check, label_name)) {
+      let elm = $('input[name="mail"]');
+      elm.addClass('border-error-input');
+      return check_data(input_val, type_check, label_name);
+   }
+
+   input_val = data_form['mail'];
+   type_check = 'regex_mail';
+   label_name = getNameLabelInput('mail');
+   if(check_data(input_val, type_check, label_name)) {
+      let elm = $('input[name="mail"]');
+      elm.addClass('border-error-input');
+      return check_data(input_val, type_check, label_name);
+   }
+
+   input_val = data_form['mail_confirm'];
+   type_check = 'required';
+   label_name = getNameLabelInput('mail_confirm');
+   if(check_data(input_val, type_check, label_name)) {
+      let elm = $('input[name="mail_confirm"]');
+      elm.addClass('border-error-input');
+      return check_data(input_val, type_check, label_name);
+   }
+
+   input_val = data_form['mail_confirm'];
+   type_check = 'regex_mail';
+   label_name = getNameLabelInput('mail_confirm');
+   if(check_data(input_val, type_check, label_name)) {
+      let elm = $('input[name="mail_confirm"]');
+      elm.addClass('border-error-input');
+      return check_data(input_val, type_check, label_name);
+   }
+
+   if(data_form['mail_confirm'] != data_form['mail']) {
+      let elm = $('input[name="mail_confirm"]');
+      elm.addClass('border-error-input');
+      return 'E-mail確認用とE-mailが一致しません。';
+   };
+
+   return '';
+
+  }
+
+  /**
+   * 
+   * @param {*} name 
+   */
+  function getTypeCheckByName(name) {
+   let type = '';
+   switch (name) {
+      case 'mail':
+      case 'mail_confirm':
+         type = 'regex_mail';
+         break;
+
+      case 'birth_year':
+      case 'birth_month':
+      case 'birth_day':
+      case 'tel':
+         type = 'regex_only_number';
+         break;
+
+      case 'post_code':
+         type = 'regex_post_code';
+         break; 
+
+      case 'family_name':
+      case 'given_name':
+         type = 'regex_zen_kaku';
+         break;
+
+      case 'family_name_k':
+      case 'given_name_k':
+         type = 'regex_han_kana';
+         break;
+
+      case 'mail':
+         type = 'required';
+         break;
+   
+      default:
+         break;
+   }
+   return type;
   }

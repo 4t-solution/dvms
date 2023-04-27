@@ -40,7 +40,6 @@ if(isset($_GET['token'])) {
     $get_prefs_api = callAPI('GET', 'http://room14.ml/ahm10_dev/rt/api/v1/combobox-data/show/prefecture_id', false);
     $prefs_api = json_decode($get_prefs_api, true);
     $prefs = $prefs_api['items'];
-    // var_dump($response);
 }
 ?>
 <!DOCTYPE html>
@@ -68,6 +67,12 @@ if(isset($_GET['token'])) {
                 left: 300px !important;
                 top: 30px !important;
             }
+        }
+
+        .alert-danger {
+            text-align: center;
+            height: 40px;
+            padding: 5px 15px;
         }
     </style>
 </head>
@@ -110,7 +115,10 @@ if(isset($_GET['token'])) {
                                 <div class="col-sm-12 col-md-6 col-lg-5 col-xl-5 align-self-center margin-top-5-sp col-sm-8 py-1"><input class="form-control form-control form-input" type="text" placeholder="カナ名　全角" required="" name="given_name_k"></div>
                             </div>
                             <div class="row d-flex form-row-1 py-2" style="height: 100%;">
-                                <div class="col-sm-12 col-md-12 col-lg-2 col-xl-2 text-start align-self-center" style="padding-top: 6px;"><label class="form-label form-label form-label-style"><span style="color: rgb(0, 0, 0);">性別</span></label><label class="form-label form-label form-label-1">(※必須)</label></div>
+                                <div class="col-sm-12 col-md-12 col-lg-2 col-xl-2 text-start align-self-center" style="padding-top: 6px;">
+                                    <label class="form-label form-label form-label-style"><span style="color: rgb(0, 0, 0);">性別</span></label>
+                                    <label class="form-label form-label form-label-1">(※必須)</label>
+                                </div>
                                 <div class="col-sm-12 col-md-12 col-lg-10 col-xl-10 align-self-center col-sm-8 col-md-9 col-lg-10">
                                     <div class="row d-sm-flex">
                                         <div class="col-6 col-sm-3 col-md-2 col-lg-2 col-xl-2 col-xxl-2 d-sm-flex align-self-center align-items-sm-end col-4">
@@ -121,6 +129,7 @@ if(isset($_GET['token'])) {
                                         </select>
                                     </div>
                                 </div>
+                            </div>
                             </div>
                             <div class="row d-flex form-row-1 py-2" style="height: 100%;">
                                 <div class="col-sm-12 col-md-12 col-lg-2 col-xl-2 text-start align-self-center" style="padding-top: 6px;"><label class="form-label form-label form-label-style"><span style="color: rgb(0, 0, 0);background-color: transparent;">生年月日</span></label><label class="form-label form-label form-label-1">(※必須)</label></div>
@@ -411,53 +420,55 @@ if(isset($_GET['token'])) {
     <script src="../assets/js/additional-methods.min.js"></script>
     <script src="../assets/js/menu.js"></script>
     <script src="../assets/js/script.js"></script>
-    <script src="../assets/js/form_submit.js"></script>
+    <script src="../assets/js/form_submit_update.js"></script>
     <script>
         $(document).ready(function () {
             const form_data = <?php echo json_encode($response);?>;
             let input_arr = Object.keys(form_data);
             $(input_arr).each((k,obj_name) => {
                 $('input, select, textarea').each(function() {
-                    let input_name = $(this).attr('name');                    
-                    // checkbox, radio
-                    switch(input_name) {                        
-                        case 'is_agreed':
-                            if(form_data['is_agreed'] == 1) {
-                                $(this).attr('disabled', false);
-                            }
-                            $(this).prop('checked', form_data['is_agreed'] == 1);
-                            break;
-                        case 'desired_dept':
-                        case 'channel':
-                        case 'is_graduated':
-                        case 'application_category':
-                            if(form_data[obj_name]) {
-                                if(typeof form_data[obj_name] == 'string' && form_data[obj_name].split(',').length > 0) {
-                                if($.inArray($(this).val(), form_data[obj_name].split(',')) > -1) {
+                    let input_name = $(this).attr('name');
+                    if(obj_name == input_name) {
+                        // checkbox, radio
+                        switch(input_name) {                      
+                            case 'is_agreed':
+                                if(form_data['is_agreed'] == 1) {
+                                    $(this).attr('disabled', false);
                                     $(this).prop('checked', true);
                                 }
-                            }           
-                            }           
-                            break;
-                        case 'graduation_year':
-                            if(input_name == obj_name) {
-                                $(this).val(form_data['graduation_year'] + '-'+form_data['graduation_month']);
-                            }
-                            break;
-                        default:
-                            if(form_data['recruit_category'] == "獣医 キャリア 専科研修 アルバイト") {
-                                $('#desired_dept').show();
-                            } else {
-                                $('#desired_dept').hide();
-                            }
-                            if(input_name == obj_name) {
-                                $(this).val(form_data[obj_name]);
-                            }
-                            break;
-                    }
+                                break;
+                            case 'desired_dept':
+                            case 'channel':
+                            case 'is_graduated':
+                            case 'application_category':
+                                if(form_data[obj_name]) {
+                                    if(typeof form_data[obj_name] == 'string' && form_data[obj_name].split(',').length > 0) {
+                                    if($.inArray($(this).val(), form_data[obj_name].split(',')) > -1) {
+                                        $(this).prop('checked', true);
+                                    }
+                                }           
+                                }           
+                                break;
+                            case 'graduation_year':
+                                if(input_name == obj_name) {
+                                    $(this).val(form_data['graduation_year'] + '-'+form_data['graduation_month']);
+                                }
+                                break;
+                            default:
+                                if(form_data['recruit_category'] == "獣医 キャリア 専科研修 アルバイト") {
+                                    $('#desired_dept').show();
+                                } else {
+                                    $('#desired_dept').hide();
+                                }
+                                if(input_name == obj_name) {
+                                    $(this).val(form_data[obj_name]);
+                                }
+                                break;
+                        }
+                    }                    
+                    
                 })
             })
-            validate_form();
         })
     </script>
 </body>

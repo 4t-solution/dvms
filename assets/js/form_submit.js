@@ -32,7 +32,6 @@ $(document).ready(function () {
             html += '<p class="text-center">'+message+'</p>';
             html += '</div>';
             $(html).insertBefore(btnSend.parent());
-            chboxSend.prop('checked', false);
          } else {            
             btnSend.attr('disabled', false);
          }
@@ -120,6 +119,7 @@ function check_data(data, type_check, label_name) {
       'tel': '電話番号',
       'mail': 'E-mail',
       'mail_confirm': 'E-mail確認用',
+      'desired_dept': 'ご希望する診療科',
    };
 
    return arr[id] ? arr[id] : false;
@@ -253,6 +253,20 @@ function parseJson() {
    let input_val = data_form['family_name'];
    let type_check = 'required';
    let label_name = getNameLabelInput('family_name');
+
+   
+   let url_path = location.href;
+   if(url_path.includes('page6')) {
+      input_val = data_form['desired_dept'];
+      type_check = 'required';
+      label_name = getNameLabelInput('desired_dept');
+      if(check_data(input_val, type_check, label_name)) {
+         let elm = $('input[name="desired_dept"]');
+         elm.addClass('border-error-input');
+         return check_data(input_val, type_check, label_name);
+      }
+   }
+
    if(check_data(input_val, type_check, label_name)) {
       let elm = $('input[name="family_name"]');
       elm.addClass('border-error-input');

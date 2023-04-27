@@ -32,8 +32,9 @@ $(document).ready(function () {
             html += '<p class="text-center">'+message+'</p>';
             html += '</div>';
             $(html).insertBefore(btnSend.parent());
-            btnSend.attr('disabled', true);
             chboxSend.prop('checked', false);
+         } else {            
+            btnSend.attr('disabled', false);
          }
       } else {
          btnSend.attr('disabled', true);
@@ -47,13 +48,7 @@ $(document).ready(function () {
       $(this).html(
          `<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> 送信中...`
       );
-      var validate = $('#inputForm').validate();
-      var errors = validate?.errorList;
-      if (errors.length == 0) {
-       submitForm();
-      } else {
-         validate.showErrors();
-      }
+      submitForm();
     })
  
    $('.menu-control--btn-entry').click(function () {

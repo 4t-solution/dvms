@@ -428,13 +428,7 @@ if(isset($_GET['token'])) {
                     let input_name = $(this).attr('name');
                     if(obj_name == input_name) {
                         // checkbox, radio
-                        switch(input_name) {                      
-                            case 'is_agreed':
-                                if(form_data['is_agreed'] == 1) {
-                                    $(this).attr('disabled', false);
-                                    $(this).prop('checked', true);
-                                }
-                                break;
+                        switch(input_name) {
                             case 'desired_dept':
                             case 'channel':
                             case 'is_graduated':

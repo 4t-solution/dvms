@@ -56,7 +56,6 @@ $(document).ready(function () {
  });
 
  
-
 function check_data(data, type_check, label_name) {
    let message = '';
    switch (type_check) {
@@ -245,9 +244,9 @@ function parseJson() {
       }
    }
    return [returnJson, error];
-  }
+}
 
-  function validate_input() {
+function validate_input() {
    $('.border-error-input').removeClass('border-error-input');
    let data_form = parseJson()[0];
    let input_val = data_form['family_name'];

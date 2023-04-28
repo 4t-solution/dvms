@@ -17,12 +17,17 @@ const arr_required = {
    'pref_id': '都道府県',
    'addr_a': '市区町村',
    'addr_b': '番地',
-   'addr_c': '建物名',
-   'school': '学校・学部・学科',
+   'addr_c': '建物名',   
+   'school': '学校・学部・学科',   
    'graduation_year': '卒業（予定）年',
+   'is_graduated': '卒業/卒業見込',
+   'application_category': '応募内容',
    'channel': '当院を知ったきっかけ'
 };
 $(document).ready(function () {
+
+   tracking_view();
+
    $('#inputForm .form-control, .form-check-input').on('input', function () {
       if($(this).attr('name') != 'zip_a' || $(this).attr('name') != 'zip_b') {
          validate_update(this);
@@ -62,6 +67,7 @@ $(document).ready(function () {
                html += '<p class="text-center">'+message+'</p>';
                html += '</div>';
                $(html).insertAfter($('input[name="'+obj_name+'"]').parents('.row.d-flex'));
+               window.scrollTo($('input[name="'+obj_name+'"]').parents('.row.d-flex').position());
                btnSend.attr('disabled', true);
                return false
             } else {            
@@ -69,19 +75,6 @@ $(document).ready(function () {
             }
             return true;
          })
-         // $(input_arr).each(function(k, obj_name) {
-         //    let message = validate_input(obj_name);
-         //    if(message) {
-         //       var html = '<div class="alert alert-danger" role="alert">';
-         //       html += '<p class="text-center">'+message+'</p>';
-         //       html += '</div>';
-         //       $(html).insertAfter($('input[name="'+obj_name+'"]').parents('.row.d-flex'));
-         //       chboxSend.prop('checked', false);
-         //       btnSend.attr('disabled', true);
-         //    } else {            
-         //       btnSend.attr('disabled', false);
-         //    }            
-         // })
       } else {
          btnSend.attr('disabled', true);
       }
@@ -96,14 +89,16 @@ function reset_btn_submit() {
    chboxSend.prop('checked', false);
 }
 
-function tracking_view(is_load = false, click_entry = false) {
+function tracking_view(function_name = '', url = '', applicant_info_id = '') {
    let api_url = 'http://room14.ml/ahm10_dev/rt/hr/recruit/tracking_view';
+   url = url ? url : location.href;
    $.ajax({
       url: api_url,
       method: 'POST',
       data: {
-         is_load: is_load,
-         click_entry: click_entry,
+         url: url,
+         function: function_name,
+         applicant_info_id: applicant_info_id,
       },
       // Ajaxリクエストが成功した時発動
       success: function (data) {
@@ -150,6 +145,7 @@ function tracking_view(is_load = false, click_entry = false) {
       data: data_form[0],
        // Ajaxリクエストが成功した時発動
       success: function (data) {
+         tracking_view('button1', '', data.applicant_id);
          $('#btnSend').html(
             `送信する`
          );
@@ -275,8 +271,6 @@ function validate_update(elm) {
       html += '</div>';
       $(html).insertAfter($(elm).parents('.row.d-flex'));      
       btnSend.attr('disabled', true);
-   } else {            
-      btnSend.attr('disabled', false);
    }
 }
 
@@ -442,7 +436,7 @@ function validate_input(elm_name) {
          
          type_check = 'regex_only_number';
          if(check_data(input_val, type_check, label_name)) {
-            let elm = $('input[name="zip_a"]');
+            let elm = $('input[name="zip_b"]');
             elm.addClass('border-error-input');
             return check_data(input_val, type_check, label_name);
          }
@@ -450,6 +444,15 @@ function validate_input(elm_name) {
       case 'addr_a':         
          input_val = data_form['addr_a'];
          type_check = 'required';
+         label_name = getNameLabelInput('addr_a');
+         if(check_data(input_val, type_check, label_name)) {
+            let elm = $('input[name="addr_a"]');
+            elm.addClass('border-error-input');
+            return check_data(input_val, type_check, label_name);
+         }
+
+         input_val = data_form['addr_a'];
+         type_check = 'regex_zen_kaku';
          label_name = getNameLabelInput('addr_a');
          if(check_data(input_val, type_check, label_name)) {
             let elm = $('input[name="addr_a"]');
@@ -466,17 +469,26 @@ function validate_input(elm_name) {
             elm.addClass('border-error-input');
             return check_data(input_val, type_check, label_name);
          }
-         break;
-      case 'addr_c':
-         input_val = data_form['addr_c'];
-         type_check = 'required';
-         label_name = getNameLabelInput('addr_c');
+
+         input_val = data_form['addr_b'];
+         type_check = 'regex_zen_kaku';
+         label_name = getNameLabelInput('addr_b');
          if(check_data(input_val, type_check, label_name)) {
-            let elm = $('input[name="addr_c"]');
+            let elm = $('input[name="addr_b"]');
             elm.addClass('border-error-input');
             return check_data(input_val, type_check, label_name);
          }
          break;
+      // case 'addr_c':
+      //    input_val = data_form['addr_c'];
+      //    type_check = 'required';
+      //    label_name = getNameLabelInput('addr_c');
+      //    if(check_data(input_val, type_check, label_name)) {
+      //       let elm = $('input[name="addr_c"]');
+      //       elm.addClass('border-error-input');
+      //       return check_data(input_val, type_check, label_name);
+      //    }
+      //    break;
       case 'tel':
          input_val = data_form['tel'];
          type_check = 'required';
@@ -523,6 +535,15 @@ function validate_input(elm_name) {
             elm.addClass('border-error-input');
             return check_data(input_val, type_check, label_name);
          }
+
+         input_val = data_form['school'];
+         type_check = 'regex_zen_kaku';
+         label_name = getNameLabelInput('school');
+         if(check_data(input_val, type_check, label_name)) {
+            let elm = $('input[name="school"]');
+            elm.addClass('border-error-input');
+            return check_data(input_val, type_check, label_name);
+         }
          break;
       case 'graduation_year':
          input_val = data_form['graduation_year'];
@@ -545,6 +566,7 @@ function validate_input(elm_name) {
       case 'application_category':
          input_val = data_form['application_category'];
          label_name = getNameLabelInput('application_category');
+         console.log(input_val, label_name);
          if(check_data(input_val, type_check, label_name)) {
             let elm = $('input[name="application_category"]');
             elm.addClass('border-error-input');
@@ -555,9 +577,9 @@ function validate_input(elm_name) {
       case 'channel':
          input_val = data_form[elm_name];
          type_check = 'required';
-         label_name = getNameLabelInput(desired_dept);
+         label_name = getNameLabelInput(elm_name);
          if(check_data(input_val, type_check, label_name)) {
-            let elm = $('input[name="'+desired_dept+'"]');
+            let elm = $('input[name="'+elm_name+'"]');
             elm.addClass('border-error-input');
             return check_data(input_val, type_check, label_name);
          }

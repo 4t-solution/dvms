@@ -3,7 +3,7 @@ const btnSend = $('#btnSend');
 $(document).ready(function () {
    chboxSend.attr('disabled', false);
    // count view page
-   tracking_view(true);
+   tracking_view();
 
    btnSend.attr('disabled', true);
 
@@ -49,10 +49,15 @@ $(document).ready(function () {
       );
       submitForm();
     })
- 
-   $('.menu-control--btn-entry').click(function () {
-      tracking_view(false, true);
-   })
+
+    $('a').click(function () {
+      let href = $(this).attr('href');
+      if(!href || $.inArray(['#'], href) > -1) {
+         return true;
+      } else {
+         tracking_view('', href);
+      }
+    })
  });
 
  
@@ -129,14 +134,16 @@ function reset_btn_submit() {
    btnSend.attr('disabled', true);
 }
 
-function tracking_view(is_load = false, click_entry = false) {
+function tracking_view(function_name = '', url = '', applicant_info_id = '') {
    let api_url = 'http://room14.ml/ahm10_dev/rt/hr/recruit/tracking_view';
+   url = url ? url : location.href;
    $.ajax({
       url: api_url,
       method: 'POST',
       data: {
-         is_load: is_load,
-         click_entry: click_entry,
+         url: url,
+         function: function_name,
+         applicant_info_id: applicant_info_id,
       },
       // Ajaxリクエストが成功した時発動
       success: function (data) {
@@ -183,6 +190,7 @@ function tracking_view(is_load = false, click_entry = false) {
       data: data_form[0],
        // Ajaxリクエストが成功した時発動
       success: function (data) {
+         tracking_view('button1', '', data.applicant_id);
          $('#btnSend').html(
             `送信する`
          );

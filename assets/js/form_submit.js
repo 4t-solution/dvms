@@ -30,6 +30,7 @@ $(document).ready(function () {
          if(message) {
             var html = '<div class="alert alert-danger" role="alert">';
             html += '<p class="text-center">'+message+'</p>';
+            html += '<p class="text-center">修正後、個人情報の取扱いに再度✓を入れて送信して下さい。</p>';
             html += '</div>';
             $(html).insertBefore(btnSend.parent());
          } else {            

@@ -269,15 +269,13 @@ function validate_input() {
       type_check = 'required';
       label_name = getNameLabelInput('desired_dept');
       if(check_data(input_val, type_check, label_name)) {
-         let elm = $('input[name="desired_dept"]');
-         elm.addClass('border-error-input');
          return check_data(input_val, type_check, label_name);
       }
    }
 
    if(check_data(input_val, type_check, label_name)) {
       let elm = $('input[name="family_name"]');
-      elm.addClass('border-error-input');
+      
       return check_data(input_val, type_check, label_name);
    }
 
@@ -286,7 +284,7 @@ function validate_input() {
    label_name = getNameLabelInput('family_name');
    if(check_data(input_val, type_check, label_name)) {
       let elm = $('input[name="family_name"]');
-      elm.addClass('border-error-input');
+      
       return check_data(input_val, type_check, label_name);
    }
 
@@ -295,7 +293,7 @@ function validate_input() {
    label_name = getNameLabelInput('given_name');
    if(check_data(input_val, type_check, label_name)) {
       let elm = $('input[name="given_name"]');
-      elm.addClass('border-error-input');
+      
       return check_data(input_val, type_check, label_name);
    }
 
@@ -304,7 +302,7 @@ function validate_input() {
    label_name = getNameLabelInput('given_name');
    if(check_data(input_val, type_check, label_name)) {
       let elm = $('input[name="given_name"]');
-      elm.addClass('border-error-input');
+      
       return check_data(input_val, type_check, label_name);
    }
 
@@ -313,7 +311,7 @@ function validate_input() {
    label_name = getNameLabelInput('family_name_k');
    if(check_data(input_val, type_check, label_name)) {
       let elm = $('input[name="family_name_k"]');
-      elm.addClass('border-error-input');
+      
       return check_data(input_val, type_check, label_name);
    }
 
@@ -322,7 +320,7 @@ function validate_input() {
    label_name = getNameLabelInput('family_name_k');
    if(check_data(input_val, type_check, label_name)) {
       let elm = $('input[name="family_name_k"]');
-      elm.addClass('border-error-input');
+      
       return check_data(input_val, type_check, label_name);
    }
 
@@ -331,7 +329,7 @@ function validate_input() {
    label_name = getNameLabelInput('given_name_k');
    if(check_data(input_val, type_check, label_name)) {
       let elm = $('input[name="given_name_k"]');
-      elm.addClass('border-error-input');
+      
       return check_data(input_val, type_check, label_name);
    }
 
@@ -340,7 +338,7 @@ function validate_input() {
    label_name = getNameLabelInput('given_name_k');
    if(check_data(input_val, type_check, label_name)) {
       let elm = $('input[name="given_name_k"]');
-      elm.addClass('border-error-input');
+      
       return check_data(input_val, type_check, label_name);
    }   
 
@@ -399,7 +397,7 @@ function validate_input() {
    label_name = getNameLabelInput('tel');
    if(check_data(input_val, type_check, label_name)) {
       let elm = $('input[name="tel"]');
-      elm.addClass('border-error-input');
+      
       return check_data(input_val, type_check, label_name);
    }
 
@@ -408,7 +406,7 @@ function validate_input() {
    label_name = getNameLabelInput('tel');
    if(check_data(input_val, type_check, label_name)) {
       let elm = $('input[name="tel"]');
-      elm.addClass('border-error-input');
+      
       return check_data(input_val, type_check, label_name);
    }
 
@@ -417,7 +415,7 @@ function validate_input() {
    label_name = getNameLabelInput('mail');
    if(check_data(input_val, type_check, label_name)) {
       let elm = $('input[name="mail"]');
-      elm.addClass('border-error-input');
+      
       return check_data(input_val, type_check, label_name);
    }
 
@@ -426,7 +424,7 @@ function validate_input() {
    label_name = getNameLabelInput('mail');
    if(check_data(input_val, type_check, label_name)) {
       let elm = $('input[name="mail"]');
-      elm.addClass('border-error-input');
+      
       return check_data(input_val, type_check, label_name);
    }
 
@@ -435,7 +433,7 @@ function validate_input() {
    label_name = getNameLabelInput('mail_confirm');
    if(check_data(input_val, type_check, label_name)) {
       let elm = $('input[name="mail_confirm"]');
-      elm.addClass('border-error-input');
+      
       return check_data(input_val, type_check, label_name);
    }
 
@@ -444,13 +442,13 @@ function validate_input() {
    label_name = getNameLabelInput('mail_confirm');
    if(check_data(input_val, type_check, label_name)) {
       let elm = $('input[name="mail_confirm"]');
-      elm.addClass('border-error-input');
+      
       return check_data(input_val, type_check, label_name);
    }
 
    if(data_form['mail_confirm'] != data_form['mail']) {
       let elm = $('input[name="mail_confirm"]');
-      elm.addClass('border-error-input');
+      
       return 'E-mail確認用とE-mailが一致しません。';
    };
 

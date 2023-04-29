@@ -410,7 +410,7 @@ if(isset($_GET['token'])) {
                     <p class="fs-6 text-center">Copyright © DVMs Recruit All Rights Reserved.</p>
                 </div>
             </div>
-        </div><button class="btn btn-primary btn_go_to_top" id="btn_go_to_top" type="button"><img class="img-fluid" src="../assets/img/top/TOP17.jpg" width="80px" height="80px"></button>
+        </div><button class="btn btn-primary btn_go_to_top" id="btn_go_to_top" type="button"><img class="img-fluid" src="../assets/img/top/svg/TOP17.svg" width="80px" height="80px"></button>
     </footer>
     <script src="../assets/bootstrap/js/bootstrap.min.js"></script>
     <script src="../assets/js/jquery-3.6.4.min.js"></script>

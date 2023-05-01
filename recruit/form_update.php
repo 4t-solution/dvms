@@ -198,7 +198,7 @@ if(isset($_GET['token'])) {
                                             <div class="form-check"><input class="form-check-input" type="radio" name="is_graduated"  value="卒業"><label class="form-check-label" for="is_graduated-1">卒業</label></div>
                                         </div>
                                         <div class="col-6 col-sm-3 d-md-flex align-items-md-center" style="padding-bottom: 8px;padding-right: 6px;">
-                                            <div class="form-check"><input class="form-check-input" type="radio" name="is_graduated"  value="見込"><label class="form-check-label" for="is_graduated-2">卒業見込</label></div>
+                                            <div class="form-check"><input class="form-check-input" type="radio" name="is_graduated"  value="卒業見込"><label class="form-check-label" for="is_graduated-2">卒業見込</label></div>
                                         </div>
                                     </div>
                                 </div>
